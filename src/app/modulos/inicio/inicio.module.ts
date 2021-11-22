@@ -5,6 +5,7 @@ import { InicioRoutingModule } from './inicio-routing.module';
 import { InicioComponent } from './inicio/inicio.component';
 import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 import { ContactanosComponent } from './contactanos/contactanos.component';
+import { TarjetaComponent } from 'src/app/plantilla/tarjeta/tarjeta.component';
 
 
 @NgModule({
@@ -12,10 +13,13 @@ import { ContactanosComponent } from './contactanos/contactanos.component';
     InicioComponent,
     SobreNosotrosComponent,
     ContactanosComponent
+    
+    
   ],
   imports: [
     CommonModule,
     InicioRoutingModule
+    
   ]
 })
 export class InicioModule { }

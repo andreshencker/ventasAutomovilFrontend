@@ -9,6 +9,8 @@ import { BarraNavegacionAsesorComponent } from './plantilla/barra-navegacion-ase
 import { BarraNavegacionAdministradorComponent } from './plantilla/barra-navegacion-administrador/barra-navegacion-administrador.component';
 import { FooterInicioComponent } from './plantilla/footer-inicio/footer-inicio.component';
 import { ErrorComponent } from './plantilla/error/error.component';
+import { TarjetaComponent } from './plantilla/tarjeta/tarjeta.component';
+
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { ErrorComponent } from './plantilla/error/error.component';
     BarraNavegacionAdministradorComponent,
     FooterInicioComponent,
     ErrorComponent,
+    TarjetaComponent,
+   
    
   ],
   imports: [

@@ -1,0 +1,14 @@
+img{
+    height: 700px;
+}
+
+.title h4{
+    text-align: left;
+    color: #A7703D;
+    font-family: inter;
+}
+
+.subtitle span{
+    margin-top: 4;
+    font-size: 9;
+}

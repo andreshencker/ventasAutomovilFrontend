@@ -1,0 +1,21 @@
+img{
+    height: 550px;
+     
+}
+
+.title h4{
+    text-align: left;
+    color: #A7703D;
+    font-family: inter;
+}
+
+.subtitle span{
+    margin-top: 4;
+    font-size: 9;
+}
+
+a{
+    color: black;
+    text-decoration: none;    
+}
+

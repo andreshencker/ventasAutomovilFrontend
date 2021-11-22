@@ -24,7 +24,7 @@ const routes: Routes = [
     component:RecuperarContrasenaComponent
   },
   {
-    path:'registroCliente',
+    path:'registrarCliente',
     component:RegistroClienteComponent
   },
 
