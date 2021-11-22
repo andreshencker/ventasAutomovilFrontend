@@ -1,5 +1,7 @@
+import {ModeloDatosCliente} from "./datosCliente.modelo";
+
 export class ModeloidentificarCliente{
-    datos?:object;
+    datos?:ModeloDatosCliente;
     tk?:String;
 
 
