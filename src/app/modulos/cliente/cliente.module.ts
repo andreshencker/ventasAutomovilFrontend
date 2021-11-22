@@ -6,6 +6,7 @@ import { CrearSolicitudVehiculoComponent } from './soulictudVehiculo/crear-solic
 import { ActualizarSolicitudVehiculoComponent } from './soulictudVehiculo/actualizar-solicitud-vehiculo/actualizar-solicitud-vehiculo.component';
 import { ListarSolicitudVehiculoComponent } from './soulictudVehiculo/listar-solicitud-vehiculo/listar-solicitud-vehiculo.component';
 import { EliminarSolicitudVehiculoComponent } from './soulictudVehiculo/eliminar-solicitud-vehiculo/eliminar-solicitud-vehiculo.component';
+import { BarraNavegacionComponent } from './plantillas/barra-navegacion/barra-navegacion.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { EliminarSolicitudVehiculoComponent } from './soulictudVehiculo/eliminar
     CrearSolicitudVehiculoComponent,
     ActualizarSolicitudVehiculoComponent,
     ListarSolicitudVehiculoComponent,
-    EliminarSolicitudVehiculoComponent
+    EliminarSolicitudVehiculoComponent,
+    BarraNavegacionComponent
   ],
   imports: [
     CommonModule,

@@ -24,6 +24,7 @@ import { ActualizarDetalleVehiculoComponent } from './detalleVehiculo/actualizar
 import { ListarDetalleVehiculoComponent } from './detalleVehiculo/listar-detalle-vehiculo/listar-detalle-vehiculo.component';
 import { EliminarDetalleVehiculoComponent } from './detalleVehiculo/eliminar-detalle-vehiculo/eliminar-detalle-vehiculo.component';
 import { VentasAsesorComponent } from './estadisticas/ventas-asesor/ventas-asesor.component';
+import { BarraNavegacionComponent } from './plantillas/barra-navegacion/barra-navegacion.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { VentasAsesorComponent } from './estadisticas/ventas-asesor/ventas-aseso
     ActualizarDetalleVehiculoComponent,
     ListarDetalleVehiculoComponent,
     EliminarDetalleVehiculoComponent,
-    VentasAsesorComponent
+    VentasAsesorComponent,
+    BarraNavegacionComponent
   ],
   imports: [
     CommonModule,

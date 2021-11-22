@@ -11,6 +11,7 @@ import { CrearEstudioSolicitudComponent } from './estudioSoulictud/crear-estudio
 import { ActualizarEstudioSolicitudComponent } from './estudioSoulictud/actualizar-estudio-solicitud/actualizar-estudio-solicitud.component';
 import { ListarEstudioSolicitudComponent } from './estudioSoulictud/listar-estudio-solicitud/listar-estudio-solicitud.component';
 import { EliminarEstudioSolicitudComponent } from './estudioSoulictud/eliminar-estudio-solicitud/eliminar-estudio-solicitud.component';
+import { BarraNavegacionComponent } from './plantillas/barra-navegacion/barra-navegacion.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { EliminarEstudioSolicitudComponent } from './estudioSoulictud/eliminar-e
     CrearEstudioSolicitudComponent,
     ActualizarEstudioSolicitudComponent,
     ListarEstudioSolicitudComponent,
-    EliminarEstudioSolicitudComponent
+    EliminarEstudioSolicitudComponent,
+    BarraNavegacionComponent
   ],
   imports: [
     CommonModule,
