@@ -7,6 +7,7 @@ import { IdentificacionEmpleadoComponent } from './identificacion-empleado/ident
 import { RegistroClienteComponent } from './registro-cliente/registro-cliente.component';
 import { RecuperarContrasenaComponent } from './recuperar-contrasena/recuperar-contrasena.component';
 import { CambiarContrasenaComponent } from './cambiar-contrasena/cambiar-contrasena.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,9 @@ import { CambiarContrasenaComponent } from './cambiar-contrasena/cambiar-contras
   ],
   imports: [
     CommonModule,
-    SeguridadRoutingModule
+    SeguridadRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SeguridadModule { }

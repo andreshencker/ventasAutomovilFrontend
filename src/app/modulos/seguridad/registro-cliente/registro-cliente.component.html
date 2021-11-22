@@ -11,20 +11,32 @@
         </div>         
         <form action="">
             <div class="form-group mt-2">
-                <label for="nombre">Nombres</label>
-                <input type="text" id="name" name="nombres" class="form-control">
+                <label for="name">Nombres</label>
+                <input type="text" id="name"  class="form-control" required>
+                <div class="invalid-feedback">
+                    ingrese el nombre
+                </div>
             </div>
             <div class="form-group mt-2">
-                <label for="apellido">Apellido</label>
-                <input type="text" id="surname" name="apellido" class="form-control">
+                <label for="surname">Apellido</label>
+                <input type="text" id="surname"  class="form-control" required>
+                <div class="invalid-feedback">
+                    ingrese el apellido
+                </div>
             </div>
             <div class="form-group mt-2">
-                <label for="correo">Correo</label>
-                <input type="email" id="email" name="correo" class="form-control">
+                <label for="email">Correo</label>
+                <input type="email" id="email"  class="form-control"  required>
+                <div class="invalid-feedback">
+                    ingrese un correo valido
+                </div>
             </div>
             <div class="form-group mt-2">
-                <label for="celular">Celular</label>
-                <input type="text" id="cellphone" name="celular" class="form-control">
+                <label for="cellphone">Celular</label>
+                <input type="text" id="cellphone" class="form-control" required>
+                <div class="invalid-feedback">
+                    ingrese el celular
+                </div>
             </div>
             <div class="col-12">
                 <a href="seguridad/identificacionCliente">¿Ya tiene cuenta?</a>

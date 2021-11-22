@@ -10,6 +10,7 @@ import { BarraNavegacionAdministradorComponent } from './plantilla/barra-navegac
 import { FooterInicioComponent } from './plantilla/footer-inicio/footer-inicio.component';
 import { ErrorComponent } from './plantilla/error/error.component';
 import { TarjetaComponent } from './plantilla/tarjeta/tarjeta.component';
+import { HttpClientModule} from '@angular/common/http'
 
 
 
@@ -28,7 +29,8 @@ import { TarjetaComponent } from './plantilla/tarjeta/tarjeta.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
