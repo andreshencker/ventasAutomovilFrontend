@@ -1,3 +1,4 @@
+import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CambiarContrasenaComponent } from './cambiar-contrasena/cambiar-contrasena.component';
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path:'registrarCliente',
     component:RegistroClienteComponent
+  },
+  {
+    path:'cerrarSesion',
+    component:CerrarSesionComponent
   },
 
 ];

@@ -8,6 +8,7 @@ import { RegistroClienteComponent } from './registro-cliente/registro-cliente.co
 import { RecuperarContrasenaComponent } from './recuperar-contrasena/recuperar-contrasena.component';
 import { CambiarContrasenaComponent } from './cambiar-contrasena/cambiar-contrasena.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     IdentificacionEmpleadoComponent,
     RegistroClienteComponent,
     RecuperarContrasenaComponent,
-    CambiarContrasenaComponent
+    CambiarContrasenaComponent,
+    CerrarSesionComponent
   ],
   imports: [
     CommonModule,
