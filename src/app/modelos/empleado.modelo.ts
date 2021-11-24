@@ -1,4 +1,4 @@
-export class ModeloDatosCliente{
+export class ModeloEmpleado{
     id?:string;
     documento?:string;
     nombres?:string;
