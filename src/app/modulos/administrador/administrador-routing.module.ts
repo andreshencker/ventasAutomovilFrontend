@@ -28,9 +28,9 @@ const routes: Routes = [
   {
     path:'crear-ciudad',
     component:CrearCiudadComponent
-  },  
+  },
   {
-    path:'actualizar-ciudad',
+    path:'actualizar-ciudad/:id',
     component:ActualizarCiudadComponent
   },
   {
@@ -38,7 +38,7 @@ const routes: Routes = [
     component:ListarCiudadComponent
   },
   {
-    path:'eliminar-ciudad',
+    path:'eliminar-ciudad/:id',
     component:EliminarCiudadComponent
   },
   {
@@ -117,7 +117,7 @@ const routes: Routes = [
     path:'estadisticas-ventas',
     component:VentasAsesorComponent,
   },
- 
+
 ];
 
 @NgModule({

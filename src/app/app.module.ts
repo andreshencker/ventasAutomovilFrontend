@@ -16,7 +16,8 @@ import { MensajesModule } from './modulos/mensajes/mensajes.module';
 
 @NgModule({
   declarations: [
-    AppComponent,    
+    AppComponent,
+
    ],
   imports: [
     BrowserModule,
@@ -27,7 +28,7 @@ import { MensajesModule } from './modulos/mensajes/mensajes.module';
     AdministradorModule,
     ClienteModule,
     MensajesModule,
-    ComponentesModule
+    ComponentesModule,
   ],
   exports:[],
   providers: [],

@@ -1,1 +1,15 @@
-<p>crear-ciudad works!</p>
+<app-barra-navegacion-administrador></app-barra-navegacion-administrador>
+<div class="container">
+  <h4>Crear Ciudad</h4>
+<form [formGroup]="fgValidador" method="post" (ngSubmit)="CrearCiudad()">
+  <div class="form-group mt-2">
+    <label for="ciudad">Cuidad</label>
+    <input type="text" formControlName="ciudad" id="ciudad"  class="form-control">
+</div>
+<div class="form-group mt-3">
+  <button [disabled]="!fgValidador.valid" type="submit" class=" btn btn-primary">Crear</button>
+  <a routerLink="/administrador/listar-ciudad" class="btn btn-outline-secondary">Cancelar</a>
+</div>
+</form>
+</div>
+

@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentesModule } from './../componentes/componentes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -53,13 +54,17 @@ import { MensajesModule } from '../mensajes/mensajes.module';
     ListarDetalleVehiculoComponent,
     EliminarDetalleVehiculoComponent,
     VentasAsesorComponent,
- 
+
+
+
   ],
   imports: [
     CommonModule,
     AdministradorRoutingModule,
     MensajesModule,
-    ComponentesModule
+    ComponentesModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdministradorModule { }
