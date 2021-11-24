@@ -1,3 +1,4 @@
+import { ComponentesModule } from './../componentes/componentes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -6,7 +7,7 @@ import { CrearSolicitudVehiculoComponent } from './soulictudVehiculo/crear-solic
 import { ActualizarSolicitudVehiculoComponent } from './soulictudVehiculo/actualizar-solicitud-vehiculo/actualizar-solicitud-vehiculo.component';
 import { ListarSolicitudVehiculoComponent } from './soulictudVehiculo/listar-solicitud-vehiculo/listar-solicitud-vehiculo.component';
 import { EliminarSolicitudVehiculoComponent } from './soulictudVehiculo/eliminar-solicitud-vehiculo/eliminar-solicitud-vehiculo.component';
-import { BarraNavegacionComponent } from './plantillas/barra-navegacion/barra-navegacion.component';
+
 
 
 @NgModule({
@@ -15,11 +16,12 @@ import { BarraNavegacionComponent } from './plantillas/barra-navegacion/barra-na
     ActualizarSolicitudVehiculoComponent,
     ListarSolicitudVehiculoComponent,
     EliminarSolicitudVehiculoComponent,
-    BarraNavegacionComponent
+  
   ],
   imports: [
     CommonModule,
-    ClienteRoutingModule
+    ClienteRoutingModule,
+    ComponentesModule
   ]
 })
 export class ClienteModule { }

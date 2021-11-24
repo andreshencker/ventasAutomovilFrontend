@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BarraNavegacionComponent } from './barra-navegacion.component';
+import { CarouselVehiculoComponent } from './carousel-vehiculo.component';
 
-describe('BarraNavegacionComponent', () => {
-  let component: BarraNavegacionComponent;
-  let fixture: ComponentFixture<BarraNavegacionComponent>;
+describe('CarouselVehiculoComponent', () => {
+  let component: CarouselVehiculoComponent;
+  let fixture: ComponentFixture<CarouselVehiculoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BarraNavegacionComponent ]
+      declarations: [ CarouselVehiculoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BarraNavegacionComponent);
+    fixture = TestBed.createComponent(CarouselVehiculoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

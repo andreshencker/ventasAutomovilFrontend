@@ -1,3 +1,5 @@
+import { MensajesModule } from './../mensajes/mensajes.module';
+import { ComponentesModule } from './../componentes/componentes.module';
 
 import { InicioModule } from './../inicio/inicio.module';
 
@@ -20,18 +22,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     IdentificacionEmpleadoComponent,
     RegistroClienteComponent,
     RecuperarContrasenaComponent,
-    CambiarContrasenaComponent,
-    
-    
-    
+    CambiarContrasenaComponent,    
   ],
   imports: [
     CommonModule,
     SeguridadRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    InicioModule,
-      
+    ComponentesModule,
+    MensajesModule      
   ],
   exports:[
 

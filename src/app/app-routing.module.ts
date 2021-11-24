@@ -1,6 +1,7 @@
+import { MensajesModule } from './modulos/mensajes/mensajes.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ErrorComponent } from './plantilla/error/error.component';
+
 
 
 const routes: Routes = [
@@ -35,7 +36,7 @@ const routes: Routes = [
   },
   {
     path:"**",
-    component: ErrorComponent
+    loadChildren:()=> import("./modulos/mensajes/mensajes.module").then(x=>x.MensajesModule)
   },
 ];
 

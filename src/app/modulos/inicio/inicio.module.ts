@@ -1,32 +1,26 @@
+import { MensajesModule } from './../mensajes/mensajes.module';
+import { ComponentesModule } from './../componentes/componentes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { InicioRoutingModule } from './inicio-routing.module';
 import { InicioComponent } from './inicio/inicio.component';
 import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 import { ContactanosComponent } from './contactanos/contactanos.component';
-import { TarjetaComponent } from 'src/app/plantilla/tarjeta/tarjeta.component';
-import { PiePaginaComponent } from './plantillas/pie-pagina/pie-pagina.component';
-import { BarraNavegacionComponent } from './plantillas/barra-navegacion/barra-navegacion.component';
-
-
-
 
 @NgModule({
   declarations: [
     InicioComponent,
     SobreNosotrosComponent,
-    ContactanosComponent,
-    PiePaginaComponent,
-    BarraNavegacionComponent, 
-    
+    ContactanosComponent,    
   ],
   imports: [
     CommonModule,
-    InicioRoutingModule,    
+    InicioRoutingModule,
+    ComponentesModule,
+    MensajesModule    
   ],
   exports:[
-    BarraNavegacionComponent,
+    
   ]
 })
 export class InicioModule { }

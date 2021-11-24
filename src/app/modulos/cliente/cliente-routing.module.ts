@@ -1,9 +1,11 @@
+import { ClienteModule } from './cliente.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListarSolicitudVehiculoComponent } from '../administrador/solicitudVehiculo/listar-solicitud-vehiculo/listar-solicitud-vehiculo.component';
+
 import { ActualizarSolicitudVehiculoComponent } from './soulictudVehiculo/actualizar-solicitud-vehiculo/actualizar-solicitud-vehiculo.component';
 import { CrearSolicitudVehiculoComponent } from './soulictudVehiculo/crear-solicitud-vehiculo/crear-solicitud-vehiculo.component';
 import { EliminarSolicitudVehiculoComponent } from './soulictudVehiculo/eliminar-solicitud-vehiculo/eliminar-solicitud-vehiculo.component';
+import { ListarSolicitudVehiculoComponent } from './soulictudVehiculo/listar-solicitud-vehiculo/listar-solicitud-vehiculo.component';
 
 const routes: Routes = [
   {

@@ -1,6 +1,6 @@
+import { ComponentesModule } from './../componentes/componentes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AsesorRoutingModule } from './asesor-routing.module';
 import { SolicitudesComponent } from './estadisticas/solicitudes/solicitudes.component';
 import { CrearAsignacionComponent } from './Asignados/crear-asignacion/crear-asignacion.component';
@@ -11,7 +11,8 @@ import { CrearEstudioSolicitudComponent } from './estudioSoulictud/crear-estudio
 import { ActualizarEstudioSolicitudComponent } from './estudioSoulictud/actualizar-estudio-solicitud/actualizar-estudio-solicitud.component';
 import { ListarEstudioSolicitudComponent } from './estudioSoulictud/listar-estudio-solicitud/listar-estudio-solicitud.component';
 import { EliminarEstudioSolicitudComponent } from './estudioSoulictud/eliminar-estudio-solicitud/eliminar-estudio-solicitud.component';
-import { BarraNavegacionComponent } from './plantillas/barra-navegacion/barra-navegacion.component';
+import { MensajesModule } from '../mensajes/mensajes.module';
+
 
 
 @NgModule({
@@ -25,11 +26,13 @@ import { BarraNavegacionComponent } from './plantillas/barra-navegacion/barra-na
     ActualizarEstudioSolicitudComponent,
     ListarEstudioSolicitudComponent,
     EliminarEstudioSolicitudComponent,
-    BarraNavegacionComponent
+    
   ],
   imports: [
     CommonModule,
-    AsesorRoutingModule
+    AsesorRoutingModule,
+    MensajesModule,
+    ComponentesModule
   ]
 })
 export class AsesorModule { }

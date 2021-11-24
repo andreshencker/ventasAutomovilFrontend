@@ -1,3 +1,4 @@
+import { ComponentesModule } from './modulos/componentes/componentes.module';
 import { ClienteModule } from './modulos/cliente/cliente.module';
 import { AdministradorModule } from './modulos/administrador/administrador.module';
 import { InicioModule } from './modulos/inicio/inicio.module';
@@ -5,24 +6,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BarraNavegacionInicioComponent } from './plantilla/barra-navegacion-inicio/barra-navegacion-inicio.component';
-import { ErrorComponent } from './plantilla/error/error.component';
-import { TarjetaComponent } from './plantilla/tarjeta/tarjeta.component';
 import { HttpClientModule} from '@angular/common/http';
 import { SeguridadModule } from './modulos/seguridad/seguridad.module';
+import { MensajesModule } from './modulos/mensajes/mensajes.module';
+
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,   
-    BarraNavegacionInicioComponent,   
-    ErrorComponent,
-    TarjetaComponent,
-      
-   
-  ],
+    AppComponent,    
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,7 +25,9 @@ import { SeguridadModule } from './modulos/seguridad/seguridad.module';
     InicioModule,
     SeguridadModule,
     AdministradorModule,
-    ClienteModule
+    ClienteModule,
+    MensajesModule,
+    ComponentesModule
   ],
   exports:[],
   providers: [],

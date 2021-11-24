@@ -1,3 +1,4 @@
+import { ComponentesModule } from './../componentes/componentes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -24,7 +25,8 @@ import { ActualizarDetalleVehiculoComponent } from './detalleVehiculo/actualizar
 import { ListarDetalleVehiculoComponent } from './detalleVehiculo/listar-detalle-vehiculo/listar-detalle-vehiculo.component';
 import { EliminarDetalleVehiculoComponent } from './detalleVehiculo/eliminar-detalle-vehiculo/eliminar-detalle-vehiculo.component';
 import { VentasAsesorComponent } from './estadisticas/ventas-asesor/ventas-asesor.component';
-import { BarraNavegacionComponent } from './plantillas/barra-navegacion/barra-navegacion.component';
+import { MensajesModule } from '../mensajes/mensajes.module';
+
 
 
 @NgModule({
@@ -51,11 +53,13 @@ import { BarraNavegacionComponent } from './plantillas/barra-navegacion/barra-na
     ListarDetalleVehiculoComponent,
     EliminarDetalleVehiculoComponent,
     VentasAsesorComponent,
-    BarraNavegacionComponent
+ 
   ],
   imports: [
     CommonModule,
-    AdministradorRoutingModule
+    AdministradorRoutingModule,
+    MensajesModule,
+    ComponentesModule
   ]
 })
 export class AdministradorModule { }
