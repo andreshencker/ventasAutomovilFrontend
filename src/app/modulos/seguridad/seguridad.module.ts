@@ -1,3 +1,6 @@
+
+import { InicioModule } from './../inicio/inicio.module';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,19 +13,28 @@ import { CambiarContrasenaComponent } from './cambiar-contrasena/cambiar-contras
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
+
 @NgModule({
   declarations: [
     IdentificacionClienteComponent,
     IdentificacionEmpleadoComponent,
     RegistroClienteComponent,
     RecuperarContrasenaComponent,
-    CambiarContrasenaComponent
+    CambiarContrasenaComponent,
+    
+    
+    
   ],
   imports: [
     CommonModule,
     SeguridadRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InicioModule,
+      
+  ],
+  exports:[
+
   ]
 })
 export class SeguridadModule { }

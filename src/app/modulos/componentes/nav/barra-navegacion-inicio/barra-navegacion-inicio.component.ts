@@ -10,7 +10,6 @@ export class BarraNavegacionInicioComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
   }
 
 }

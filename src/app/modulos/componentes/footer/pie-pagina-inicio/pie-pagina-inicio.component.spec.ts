@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InicioComponent } from './inicio.component';
+import { PiePaginaInicioComponent } from './pie-pagina-inicio.component';
 
-describe('InicioComponent', () => {
-  let component: InicioComponent;
-  let fixture: ComponentFixture<InicioComponent>;
+describe('PiePaginaInicioComponent', () => {
+  let component: PiePaginaInicioComponent;
+  let fixture: ComponentFixture<PiePaginaInicioComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InicioComponent ]
+      declarations: [ PiePaginaInicioComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InicioComponent);
+    fixture = TestBed.createComponent(PiePaginaInicioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

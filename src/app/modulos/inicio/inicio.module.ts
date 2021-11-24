@@ -10,20 +10,23 @@ import { PiePaginaComponent } from './plantillas/pie-pagina/pie-pagina.component
 import { BarraNavegacionComponent } from './plantillas/barra-navegacion/barra-navegacion.component';
 
 
+
+
 @NgModule({
   declarations: [
     InicioComponent,
     SobreNosotrosComponent,
     ContactanosComponent,
     PiePaginaComponent,
-    BarraNavegacionComponent
-    
+    BarraNavegacionComponent, 
     
   ],
   imports: [
     CommonModule,
-    InicioRoutingModule
-    
+    InicioRoutingModule,    
+  ],
+  exports:[
+    BarraNavegacionComponent,
   ]
 })
 export class InicioModule { }
