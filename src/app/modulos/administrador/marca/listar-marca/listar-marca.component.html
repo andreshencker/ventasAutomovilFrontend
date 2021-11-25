@@ -1,0 +1,26 @@
+<app-barra-navegacion-administrador></app-barra-navegacion-administrador>
+<div class="container">
+  <h4>Listado Marcas</h4>
+  <a class="btn btn-primary" routerLink="/administrador/crear-marca">Crear Marca</a>
+  <div class="col-5">
+    <table class="table table table-sm">
+      <thead>
+          <tr>
+            <th hidden>Id</th>
+            <th>Marca</th>
+            <th>Acciones</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of listadoRegistros">
+          <td hidden>{{p.id}}</td>
+          <td>{{p.marca}}</td>
+          <td>
+              <a class="btn btn-outline-secondary" routerLink="/administrador/actualizar-marca/{{p.id}}">Editar</a>
+              <a class="btn btn-outline-danger"  routerLink="/administrador/eliminar-marca/{{p.id}}">Eliminar</a>
+          </td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</div>

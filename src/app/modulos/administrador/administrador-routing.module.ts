@@ -1,3 +1,7 @@
+import { EliminarMarcaComponent } from './marca/eliminar-marca/eliminar-marca.component';
+import { ListarMarcaComponent } from './marca/listar-marca/listar-marca.component';
+import { ActualizarMarcaComponent } from './marca/actualizar-marca/actualizar-marca.component';
+import { CrearMarcaComponent } from './marca/crear-marca/crear-marca.component';
 import { EliminarEstadoContratoComponent } from './estadoContrato/eliminar-estado-contrato/eliminar-estado-contrato.component';
 import { ListarEstadoContratoComponent } from './estadoContrato/listar-estado-contrato/listar-estado-contrato.component';
 import { ActualizarEstadoContratoComponent } from './estadoContrato/actualizar-estado-contrato/actualizar-estado-contrato.component';
@@ -170,6 +174,22 @@ const routes: Routes = [
     component:EliminarCargoEmpleadoComponent,
   },
   {
+    path:'crear-marca',
+    component:CrearMarcaComponent
+  },
+  {
+    path:'actualizar-marca/:id',
+    component:ActualizarMarcaComponent
+  },
+  {
+    path:'listar-marca',
+    component:ListarMarcaComponent
+  },
+  {
+    path:'eliminar-marca/:id',
+    component:EliminarMarcaComponent,
+  },
+  {
     path:'crear-empleado',
     component:CrearEmpleadoComponent
   },
@@ -182,7 +202,7 @@ const routes: Routes = [
     component:ListarEmpleadoComponent
   },
   {
-    path:'Eliminar-empleado/:id',
+    path:'eliminar-empleado/:id',
     component:EliminarEmpleadoComponent,
   },
   {

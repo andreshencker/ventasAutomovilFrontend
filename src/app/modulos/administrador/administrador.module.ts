@@ -43,6 +43,10 @@ import { EliminarEstadoSolicitudComponent } from './estadoSolicitud/eliminar-est
 import { ActualizarEstadoSolicitudComponent } from './estadoSolicitud/actualizar-estado-solicitud/actualizar-estado-solicitud.component';
 import { CrearEstadoSolicitudComponent } from './estadoSolicitud/crear-estado-solicitud/crear-estado-solicitud.component';
 import { ListarEstadoSolicitudComponent } from './estadoSolicitud/listar-estado-solicitud/listar-estado-solicitud.component';
+import { CrearMarcaComponent } from './marca/crear-marca/crear-marca.component';
+import { ActualizarMarcaComponent } from './marca/actualizar-marca/actualizar-marca.component';
+import { ListarMarcaComponent } from './marca/listar-marca/listar-marca.component';
+import { EliminarMarcaComponent } from './marca/eliminar-marca/eliminar-marca.component';
 
 
 
@@ -86,6 +90,10 @@ import { ListarEstadoSolicitudComponent } from './estadoSolicitud/listar-estado-
     ActualizarEstadoSolicitudComponent,
     CrearEstadoSolicitudComponent,
     ListarEstadoSolicitudComponent,
+    CrearMarcaComponent,
+    ActualizarMarcaComponent,
+    ListarMarcaComponent,
+    EliminarMarcaComponent,
 
 
 

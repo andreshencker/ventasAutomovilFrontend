@@ -1,0 +1,14 @@
+<app-barra-navegacion-administrador></app-barra-navegacion-administrador>
+<div class="col-4">
+  <h4>Crear Marca</h4>
+<form [formGroup]="fgValidador" method="post" (ngSubmit)="Crear()">
+  <div class="form-group mt-2">
+    <label for="marca">Marca</label>
+    <input type="text" formControlName="marca" name="marca"  class="form-control">
+</div>
+<div class="form-group mt-3">
+  <button [disabled]="!fgValidador.valid" type="submit" class=" btn btn-primary">Crear</button>
+  <a routerLink="/administrador/listar-marca" class="btn btn-outline-secondary">Cancelar</a>
+</div>
+</form>
+</div>
