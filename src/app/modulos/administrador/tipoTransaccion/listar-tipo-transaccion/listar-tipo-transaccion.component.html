@@ -1,0 +1,26 @@
+<app-barra-navegacion-administrador></app-barra-navegacion-administrador>
+<div class="container">
+  <h4>Listado de estados solicitud</h4>
+  <a class="btn btn-primary" routerLink="/administrador/crear-tipoTransaccion">Crear Tipo Transacción</a>
+  <div class="col-5">
+    <table class="table table table-sm">
+      <thead>
+          <tr>
+            <th hidden>Id</th>
+            <th>Transacciones</th>
+            <th>Acciones</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of listadoRegistros">
+          <td hidden>{{p.id}}</td>
+          <td>{{p.tipoTransaccion}}</td>
+          <td>
+              <a class="btn btn-outline-secondary" routerLink="/administrador/actualizar-tipoTransaccion/{{p.id}}">Editar</a>
+              <a class="btn btn-outline-danger"  routerLink="/administrador/eliminar-tipoTransaccion/{{p.id}}">Eliminar</a>
+          </td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</div>

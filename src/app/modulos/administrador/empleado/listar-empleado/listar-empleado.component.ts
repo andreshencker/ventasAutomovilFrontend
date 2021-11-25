@@ -1,3 +1,5 @@
+import { EmpleadoService } from './../../../../servicios/empleado/empleado.service';
+import { ModeloEmpleado } from './../../../../modelos/empleado.modelo';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarEmpleadoComponent implements OnInit {
 
-  constructor() { }
+  listadoRegistros:ModeloEmpleado[]=[];
+
+  constructor(private servicioEmpleado:EmpleadoService) { }
 
   ngOnInit(): void {
+    this.ObtenerListado()
+  }
+
+  ObtenerListado(){
+    this.servicioEmpleado.ObtenerRegistros().subscribe((datos:ModeloEmpleado[])=>{
+      this.listadoRegistros=datos;
+    })
   }
 
 }

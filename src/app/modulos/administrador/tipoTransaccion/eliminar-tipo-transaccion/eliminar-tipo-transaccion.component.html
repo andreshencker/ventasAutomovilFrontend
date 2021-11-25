@@ -1,0 +1,18 @@
+<app-barra-navegacion-administrador></app-barra-navegacion-administrador>
+<div class="col-4">
+  <h4>Eliminar Tipo transaccion</h4>
+<form [formGroup]="fgValidador" method="post" (ngSubmit)="Eliminar()">
+  <div class="form-group mt-2" hidden>
+    <label for="id">Id</label>
+    <input type="text" formControlName="id" name="id"  class="form-control" readonly >
+</div>
+  <div class="form-group mt-2">
+    <label for="transaccion">Estado</label>
+    <input type="text" formControlName="transaccion" name="transaccion"  class="form-control">
+</div>
+<div class="form-group mt-3">
+  <button [disabled]="!fgValidador.valid" class=" btn btn-primary">Eliminar</button>
+  <a routerLink="/administrador/listar-tipoTransaccion" class="btn btn-outline-secondary">Cancelar</a>
+</div>
+</form>
+</div>

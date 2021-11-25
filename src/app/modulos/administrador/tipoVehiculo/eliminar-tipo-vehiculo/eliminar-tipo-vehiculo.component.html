@@ -1,1 +1,18 @@
-<p>eliminar-tipo-vehiculo works!</p>
+<app-barra-navegacion-administrador></app-barra-navegacion-administrador>
+<div class="col-4">
+  <h4>Eliminar tipo de Vehiculo</h4>
+<form [formGroup]="fgValidador" method="post" (ngSubmit)="Eliminar()">
+  <div class="form-group mt-2" hidden>
+    <label for="id">Id</label>
+    <input type="text" formControlName="id" name="id"  class="form-control" readonly >
+</div>
+  <div class="form-group mt-2">
+    <label for="tipoVehiculo">tipo vehiculo</label>
+    <input type="text" formControlName="tipoVehiculo" name="tipoVehiculo"  class="form-control">
+</div>
+<div class="form-group mt-3">
+  <button [disabled]="!fgValidador.valid" class=" btn btn-primary">Eliminar</button>
+  <a routerLink="/administrador/listar-tipoVehiculo" class="btn btn-outline-secondary">Cancelar</a>
+</div>
+</form>
+</div>

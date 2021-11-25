@@ -1,3 +1,5 @@
+import { TipoVehiculoService } from './../../../../servicios/tipoVehiculo/tipo-vehiculo.service';
+import { ModeloTipoVehiculo } from './../../../../modelos/tipoVehiculo.modelo';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarTipoVehiculoComponent implements OnInit {
 
-  constructor() { }
+  listadoRegistros:ModeloTipoVehiculo[]=[];
+
+  constructor(private servicioTipoVehiculo:TipoVehiculoService) { }
 
   ngOnInit(): void {
+    this.ObtenerListado()
+  }
+
+  ObtenerListado(){
+    this.servicioTipoVehiculo.ObtenerRegistros().subscribe((datos:ModeloTipoVehiculo[])=>{
+      this.listadoRegistros=datos;
+    })
   }
 
 }

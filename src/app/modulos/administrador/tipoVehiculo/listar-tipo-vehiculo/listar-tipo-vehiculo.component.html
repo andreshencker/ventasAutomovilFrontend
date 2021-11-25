@@ -1,1 +1,25 @@
 <app-barra-navegacion-administrador></app-barra-navegacion-administrador>
+<div class="col-6">
+  <h4>Tipos de Vehiculos</h4>
+  <a class="btn btn-primary" routerLink="/administrador/crear-tipoVehiculo">Crear Tipo Vehiculo</a>
+
+    <table class="table table table-sm">
+      <thead>
+          <tr>
+            <th hidden>Id</th>
+            <th>Tipo</th>
+            <th>Acciones</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of listadoRegistros">
+          <td hidden>{{p.id}}</td>
+          <td>{{p.tipoVehiculo}}</td>
+          <td>
+              <a class="btn btn-outline-secondary" routerLink="/administrador/actualizar-tipoVehiculo/{{p.id}}">Editar</a>
+              <a class="btn btn-outline-danger"  routerLink="/administrador/eliminar-tipoVehiculo/{{p.id}}">Eliminar</a>
+          </td>
+      </tr>
+    </tbody>
+    </table>
+</div>

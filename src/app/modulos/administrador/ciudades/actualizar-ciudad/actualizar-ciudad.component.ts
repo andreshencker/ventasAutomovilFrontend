@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./actualizar-ciudad.component.css']
 })
 export class ActualizarCiudadComponent implements OnInit {
+
   id:string="";
   fgValidador:FormGroup=this.fb.group({
     'id':['',[Validators.required]],
@@ -20,11 +21,32 @@ export class ActualizarCiudadComponent implements OnInit {
     private fb:FormBuilder,
     private ciudadServicio:CiudadService,
     private router:Router,
-    private route:ActivatedRoute) { }
+    private route:ActivatedRoute,
+    ) { }
 
   ngOnInit(): void {
     this.id=this.route.snapshot.params["id"];
     this.BuscarCiudad();
+  }
+
+  RegistroActualizado(){
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Registro actualizado con exito',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
+  ErrorRegistro(){
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'Error al crear el registro',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
   BuscarCiudad(){
@@ -40,13 +62,11 @@ export class ActualizarCiudadComponent implements OnInit {
     let p = new ModeloCiudad();
     p.ciudad=ciudad;
     p.id=this.id;
-    this.ciudadServicio.ActualizarCiudad(p).subscribe((datos:ModeloCiudad)=>{
-      alert("cuidad actualizado exitosamente");
-      this.router.navigate(["/administrador/listar-ciudad"]);
+    this.ciudadServicio.ActualizarCiudad(p).subscribe((dato:ModeloCiudad)=>{
+      this.RegistroActualizado();
+      this.router.navigate(["/administrador/listar-ciudad"])
     },(error:any)=>{
-      alert("error al actualizar la ciudad");
+      this.ErrorRegistro()
     })
   }
-
- 
 }

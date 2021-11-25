@@ -12,6 +12,16 @@ export class MensajesRegistros{
     })
   }
 
+  RegistroActualizado(){
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Registro actualizado con exito¡',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
   ErrorRegistro(){
     Swal.fire({
       position: 'center',

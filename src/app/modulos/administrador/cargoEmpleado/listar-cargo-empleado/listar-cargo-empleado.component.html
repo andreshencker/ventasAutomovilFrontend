@@ -1,0 +1,26 @@
+<app-barra-navegacion-administrador></app-barra-navegacion-administrador>
+<div class="container">
+  <h4>Listado de cargos</h4>
+  <a class="btn btn-primary" routerLink="/administrador/crear-cargoEmpleado">Crear cargo</a>
+  <div class="col-5">
+    <table class="table table table-sm">
+      <thead>
+          <tr>
+            <th hidden>Id</th>
+            <th>Cargo</th>
+            <th>Acciones</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of listadoRegistros">
+          <td hidden>{{p.id}}</td>
+          <td>{{p.cargoEmpleado}}</td>
+          <td>
+              <a class="btn btn-outline-secondary" routerLink="/administrador/actualizar-cargoEmpleado/{{p.id}}">Editar</a>
+              <a class="btn btn-outline-danger"  routerLink="/administrador/eliminar-cargoEmpleado/{{p.id}}">Eliminar</a>
+          </td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</div>

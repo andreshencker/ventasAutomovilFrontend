@@ -4,7 +4,7 @@ import { ModeloCiudad } from './../../../../modelos/ciudad.modelo';
 import { CiudadService } from './../../../../servicios/ciudad/ciudad.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -19,11 +19,32 @@ export class CrearCiudadComponent implements OnInit {
   constructor(
     private fb:FormBuilder,
     private ciudadServicio:CiudadService,
-    private router:Router,
-    private mensajesRegistro:MensajesRegistros) { }
+    private router:Router
+    //private mensajesRegistro:MensajesRegistros
+    ) { }
 
 
   ngOnInit(): void {
+  }
+
+  RegistroGuardado(){
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Registro guardado con exito',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
+  ErrorRegistro(){
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'Error al crear el registro',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
   CrearCiudad(){
@@ -31,10 +52,10 @@ export class CrearCiudadComponent implements OnInit {
     let p = new ModeloCiudad();
     p.ciudad=ciudad;
     this.ciudadServicio.CrearCiudad(p).subscribe((datos:ModeloCiudad)=>{
-      this.mensajesRegistro.RegistroGuardado();
+     this.RegistroGuardado();
       this.router.navigate(["/administrador/listar-ciudad"]);
     },(error:any)=>{
-      this.mensajesRegistro.ErrorRegistro()
+      this.ErrorRegistro()
     })
   }
 }

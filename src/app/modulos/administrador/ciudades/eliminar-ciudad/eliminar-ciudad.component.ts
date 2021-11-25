@@ -44,22 +44,20 @@ export class EliminarCiudadComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-
-        this.ciudadServicio.EliminararCiudad(this.id).subscribe((datos:ModeloCiudad)=>{
-          Swal.fire('registro eliminado satisfactoriamente', '', 'success')
+          this.ciudadServicio.EliminararCiudad(this.id).subscribe((datos:ModeloCiudad)=>{
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'registro eliminado con exito',
+            showConfirmButton: false,
+            timer: 1500
+          })
           this.router.navigate(["/administrador/listar-ciudad"]);
+        },(error:any)=>{
+          Swal.fire('error eliminando el regsitro', '', 'error');
         })
-      } else if (result.isDenied) {
-        Swal.fire('error eliminando el regsitro', '', 'error')
       }
     })
-    /*
-    this.ciudadServicio.EliminararCiudad(this.id).subscribe((datos:ModeloCiudad)=>{
-      alert("cuidad actualizado exitosamente");
-      this.router.navigate(["/administrador/listar-ciudad"]);
-    },(error:any)=>{
-      alert("error al actualizar la ciudad");
-    })*/
   }
 
 

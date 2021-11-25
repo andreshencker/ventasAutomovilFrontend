@@ -27,6 +27,22 @@ import { ListarDetalleVehiculoComponent } from './detalleVehiculo/listar-detalle
 import { EliminarDetalleVehiculoComponent } from './detalleVehiculo/eliminar-detalle-vehiculo/eliminar-detalle-vehiculo.component';
 import { VentasAsesorComponent } from './estadisticas/ventas-asesor/ventas-asesor.component';
 import { MensajesModule } from '../mensajes/mensajes.module';
+import { CrearCargoEmpleadoComponent } from './cargoEmpleado/crear-cargo-empleado/crear-cargo-empleado.component';
+import { ActualizarCargoEmpleadoComponent } from './cargoEmpleado/actualizar-cargo-empleado/actualizar-cargo-empleado.component';
+import { ListarCargoEmpleadoComponent } from './cargoEmpleado/listar-cargo-empleado/listar-cargo-empleado.component';
+import { EliminarCargoEmpleadoComponent } from './cargoEmpleado/eliminar-cargo-empleado/eliminar-cargo-empleado.component';
+import { EliminarTipoTransaccionComponent } from './tipoTransaccion/eliminar-tipo-transaccion/eliminar-tipo-transaccion.component';
+import { CrearTipoTransaccionComponent } from './tipoTransaccion/crear-tipo-transaccion/crear-tipo-transaccion.component';
+import { ActualizarTipoTransaccionComponent } from './tipoTransaccion/actualizar-tipo-transaccion/actualizar-tipo-transaccion.component';
+import { ListarTipoTransaccionComponent } from './tipoTransaccion/listar-tipo-transaccion/listar-tipo-transaccion.component';
+import { ListarEstadoContratoComponent } from './estadoContrato/listar-estado-contrato/listar-estado-contrato.component';
+import { CrearEstadoContratoComponent } from './estadoContrato/crear-estado-contrato/crear-estado-contrato.component';
+import { ActualizarEstadoContratoComponent } from './estadoContrato/actualizar-estado-contrato/actualizar-estado-contrato.component';
+import { EliminarEstadoContratoComponent } from './estadoContrato/eliminar-estado-contrato/eliminar-estado-contrato.component';
+import { EliminarEstadoSolicitudComponent } from './estadoSolicitud/eliminar-estado-solicitud/eliminar-estado-solicitud.component';
+import { ActualizarEstadoSolicitudComponent } from './estadoSolicitud/actualizar-estado-solicitud/actualizar-estado-solicitud.component';
+import { CrearEstadoSolicitudComponent } from './estadoSolicitud/crear-estado-solicitud/crear-estado-solicitud.component';
+import { ListarEstadoSolicitudComponent } from './estadoSolicitud/listar-estado-solicitud/listar-estado-solicitud.component';
 
 
 
@@ -54,6 +70,23 @@ import { MensajesModule } from '../mensajes/mensajes.module';
     ListarDetalleVehiculoComponent,
     EliminarDetalleVehiculoComponent,
     VentasAsesorComponent,
+    CrearCargoEmpleadoComponent,
+    ActualizarCargoEmpleadoComponent,
+    ListarCargoEmpleadoComponent,
+    EliminarCargoEmpleadoComponent,
+    EliminarTipoTransaccionComponent,
+    CrearTipoTransaccionComponent,
+    ActualizarTipoTransaccionComponent,
+    ListarTipoTransaccionComponent,
+    ListarEstadoContratoComponent,
+    CrearEstadoContratoComponent,
+    ActualizarEstadoContratoComponent,
+    EliminarEstadoContratoComponent,
+    EliminarEstadoSolicitudComponent,
+    ActualizarEstadoSolicitudComponent,
+    CrearEstadoSolicitudComponent,
+    ListarEstadoSolicitudComponent,
+
 
 
 

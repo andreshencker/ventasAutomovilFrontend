@@ -1,17 +1,17 @@
 <app-barra-navegacion-administrador></app-barra-navegacion-administrador>
-<div class="container">
+<div class="col-4">
   <h4>Actualiza Ciudad</h4>
 <form [formGroup]="fgValidador" method="post" (ngSubmit)="EditarCiudad()">
   <div class="form-group mt-2" hidden>
     <label for="id">Id</label>
-    <input type="text" formControlName="id" id="id"  class="form-control" readonly >
+    <input type="text" formControlName="id" name="id"  class="form-control" readonly >
 </div>
   <div class="form-group mt-2">
     <label for="ciudad">Cuidad</label>
-    <input type="text" formControlName="ciudad" id="ciudad"  class="form-control">
+    <input type="text" formControlName="ciudad" name="ciudad"  class="form-control">
 </div>
 <div class="form-group mt-3">
-  <button [disabled]="!fgValidador.valid" type="submit" class=" btn btn-primary">Actualizar</button>
+  <button [disabled]="!fgValidador.valid" type="submit" class="btn btn-primary">Actualizar</button>
   <a routerLink="/administrador/listar-ciudad" class="btn btn-outline-secondary">Cancelar</a>
 </div>
 </form>
