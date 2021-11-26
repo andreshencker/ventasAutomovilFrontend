@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SeguridadService } from '../seguridad.service';
 import { Observable } from 'rxjs';
+import { Url } from 'src/app/utils/conxion';
 
 @Injectable({
   providedIn: 'root'

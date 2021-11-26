@@ -6,4 +6,5 @@ export class ModeloEmpleado{
     correo?:string;
     contrasena?:string;
     celular?:string;
+    cargoEmpleadoId?:string;
 }
