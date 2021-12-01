@@ -6,6 +6,7 @@ import { ModeloCargoEmpleado } from 'src/app/modelos/cargoEmpleado.modelo';
 import { Router } from '@angular/router';
 import { CargoEmpleadoService } from 'src/app/servicios/cargoEmpleado/cargo-empleado.service';
 import Swal from 'sweetalert2';
+import { getgid } from 'process';
 
 @Component({
   selector: 'app-listar-empleado',
@@ -14,49 +15,63 @@ import Swal from 'sweetalert2';
 })
 export class ListarEmpleadoComponent implements OnInit {
 
-  fgValidador:FormGroup=this.fb.group({
-    'documento':['',[Validators.required,Validators.minLength(6)]],
-    'nombres':['',[Validators.required]],
-    'apellidos':['',[Validators.required]],
-    'correo':['',[Validators.required,Validators.email]],
-    'celular':['',[Validators.required,Validators.minLength(10)]],
-    'cargo':['',[Validators.required]],
+  // se genera las validaciones del formulario
+  fgValidador: FormGroup = this.fb.group({
+    'id':[''],
+    'documento': ['', [Validators.required, Validators.minLength(6)]],
+    'nombres': ['', [Validators.required]],
+    'apellidos': ['', [Validators.required]],
+    'correo': ['', [Validators.required, Validators.email]],
+    'celular': ['', [Validators.required, Validators.minLength(10)]],
+    'cargo': ['', [Validators.required]],
   })
 
 
+  //generacion de variables para para el desarrollo de la logica
+  listadoCargos: ModeloCargoEmpleado[] = [];
+  listadoRegistros: ModeloEmpleado[] = [];
+  seleccionarEmpleado: ModeloEmpleado = new ModeloEmpleado();
+  estaEditando: boolean = false;
 
-  listadoCargos:ModeloCargoEmpleado[]=[];
-  listadoRegistros:ModeloEmpleado[]=[];
 
   constructor(
-    private servicioEmpleado:EmpleadoService,
-    private fb:FormBuilder,
-    private router:Router,
-    private cargoServicio:CargoEmpleadoService
-    ) { }
+    private servicioEmpleado: EmpleadoService,
+    private fb: FormBuilder,
+    private router: Router,
+    private cargoServicio: CargoEmpleadoService
+  ) { }
 
   ngOnInit(): void {
-    this.ObtenerListadoEmpleados()
+    this.ObtenerListadoEmpleados();
+    this.ObtenerListadoCargoEmpleado();
   }
 
-  getValue(value:string){
+  mostrarBotones() {
+    if (this.estaEditando) {
+      this.estaEditando = false;
+    } else {
+      this.estaEditando = true;
+    }
+
+  }
+  getValue(value: string) {
     return this.fgValidador.get(value);
   }
 
-  ObtenerListadoEmpleados(){
-    this.servicioEmpleado.ObtenerRegistros().subscribe((datos:ModeloEmpleado[])=>{
-      this.listadoRegistros=datos;
+  ObtenerListadoEmpleados() {
+    this.servicioEmpleado.ObtenerRegistros().subscribe((datos: ModeloEmpleado[]) => {
+      this.listadoRegistros = datos;
     })
   }
 
-  ObtenerListadoCargoEmpleado(){
-    this.cargoServicio.ObtenerRegistros().subscribe((datos:ModeloCargoEmpleado[])=>{
-      this.listadoCargos=datos;
+  ObtenerListadoCargoEmpleado() {
+    this.cargoServicio.ObtenerRegistros().subscribe((datos: ModeloCargoEmpleado[]) => {
+      this.listadoCargos = datos;
     })
   }
 
 
-  RegistroGuardado(){
+  RegistroGuardado() {
     Swal.fire({
       position: 'center',
       icon: 'success',
@@ -66,7 +81,7 @@ export class ListarEmpleadoComponent implements OnInit {
     })
   }
 
-  ErrorRegistro(){
+  ErrorRegistro() {
     Swal.fire({
       position: 'center',
       icon: 'error',
@@ -76,26 +91,41 @@ export class ListarEmpleadoComponent implements OnInit {
     })
   }
 
-  Crear(){
-    let documento=this.fgValidador.controls["documento"].value
-    let nombres=this.fgValidador.controls["nombres"].value
-    let apellidos=this.fgValidador.controls["apellidos"].value
-    let correo=this.fgValidador.controls["correo"].value
-    let celular=this.fgValidador.controls["celular"].value
-    let cargo=this.fgValidador.controls["cargo"].value
-    let p = new ModeloEmpleado();
-    p.documento=documento;
-    p.nombres=nombres;
-    p.apellidos=apellidos;
-    p.cargoEmpleadoId=cargo;
-    p.correo=correo;
-    p.celular=celular;
-    this.servicioEmpleado.CrearEmpleado(p).subscribe((datos:ModeloEmpleado)=>{
-     this.RegistroGuardado();
-      this.router.navigate(["/administrador/listar-empleado"]);
-    },(error:any)=>{
-      this.ErrorRegistro()
-    })
+  addOrEdit() {
+      let p = new ModeloEmpleado()
+      p.documento = this.fgValidador.controls["documento"].value
+      p.nombres = this.fgValidador.controls["nombres"].value
+      p.apellidos = this.fgValidador.controls["apellidos"].value
+      p.correo = this.fgValidador.controls["correo"].value
+      p.celular = this.fgValidador.controls["celular"].value
+      p.cargoEmpleadoId = this.fgValidador.controls["cargo"].value
+    if (this.estaEditando === false) {
+      //let e = this.servicioEmpleado.ObtenerEmpleado(p.documento).subscribe
+      this.servicioEmpleado.CrearEmpleado(p).subscribe((datos:ModeloEmpleado)=>{
+        this.RegistroGuardado();
+        this.ObtenerListadoEmpleados();
+       },(error:any)=>{
+         this.ErrorRegistro()
+       })
+
+    } else
+      p.id=this.fgValidador.controls["id"].value
+      this.seleccionarEmpleado = new ModeloEmpleado();
+      this.servicioEmpleado.ActualizarEmpleado(p).subscribe((datos:ModeloEmpleado)=>{
+        this.RegistroGuardado();
+        this.ObtenerListadoEmpleados();
+       },(error:any)=>{
+         this.ErrorRegistro()
+       })
+       this.estaEditando=false;
+  }
+
+
+
+  openForEdit(empleado: ModeloEmpleado) {
+    this.estaEditando = true
+    this.seleccionarEmpleado = empleado;
+
   }
 
 }

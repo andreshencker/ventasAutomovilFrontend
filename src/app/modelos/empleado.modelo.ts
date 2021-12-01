@@ -1,3 +1,4 @@
+import { ModeloCargoEmpleado } from './cargoEmpleado.modelo';
 export class ModeloEmpleado{
     id?:string;
     documento?:string;
