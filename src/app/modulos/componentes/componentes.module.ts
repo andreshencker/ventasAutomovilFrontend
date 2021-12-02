@@ -8,6 +8,8 @@ import { PiePaginaInicioComponent } from './footer/pie-pagina-inicio/pie-pagina-
 import { LogoComponent } from './desing/logo/logo.component';
 import { TarjetaVehiculoComponent } from './card/tarjeta-vehiculo/tarjeta-vehiculo.component';
 import { CarouselVehiculoComponent } from './carousel/carousel-vehiculo/carousel-vehiculo.component';
+import { FormularioEmpleadoComponent } from './form/formulario-empleado/formulario-empleado.component';
+import { TarjetaEmpleadoComponent } from './card/tarjeta-empleado/tarjeta-empleado.component';
 
 
 
@@ -20,7 +22,9 @@ import { CarouselVehiculoComponent } from './carousel/carousel-vehiculo/carousel
     PiePaginaInicioComponent,
     LogoComponent,
     TarjetaVehiculoComponent,
-    CarouselVehiculoComponent
+    CarouselVehiculoComponent,
+    FormularioEmpleadoComponent,
+    TarjetaEmpleadoComponent
   ],
   imports: [
     CommonModule
@@ -33,7 +37,9 @@ import { CarouselVehiculoComponent } from './carousel/carousel-vehiculo/carousel
     PiePaginaInicioComponent,
     LogoComponent,
     TarjetaVehiculoComponent,
-    CarouselVehiculoComponent
+    CarouselVehiculoComponent,
+    FormularioEmpleadoComponent,
+    TarjetaEmpleadoComponent
   ]
 })
 export class ComponentesModule { }

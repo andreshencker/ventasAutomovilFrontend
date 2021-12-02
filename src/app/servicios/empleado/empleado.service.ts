@@ -9,6 +9,7 @@ import { SeguridadService } from '../seguridad.service';
 })
 export class EmpleadoService {
 
+  seleccionarEmpleado:ModeloEmpleado= new ModeloEmpleado();
   url="http://localhost:3000";
   token: string='';
   constructor(private http:HttpClient,private seguridadServicio:SeguridadService) {
@@ -21,6 +22,9 @@ export class EmpleadoService {
 
   ObtenerEmpleado(id:string):Observable<ModeloEmpleado>{
     return this.http.get<ModeloEmpleado>(`${this.url}/empleados/${id}`);
+  }
+  ObtenerEmpleadoByCargo(id:string):Observable<ModeloEmpleado>{
+    return this.http.get<ModeloEmpleado>(`${this.url}/cargo-empleados/${id}/empleados`);
   }
 
   CrearEmpleado(p:ModeloEmpleado):Observable<ModeloEmpleado>{
