@@ -31,6 +31,7 @@ export class TarjetaEmpleadoComponent implements OnInit {
   ngOnInit(): void {
     this.ObtenerListadoCargo();
     this.ObtenerListadoEmpleado();
+    this.ordenar();
   }
 
   ObtenerListadoCargo(){
@@ -45,6 +46,12 @@ export class TarjetaEmpleadoComponent implements OnInit {
         this.listadoEmpleados=datos;
       })
 
+  }
+
+  ordenar(){
+    this.servicoEmpleado.ObtenerEmpleadoOrderAsc().subscribe((datos:ModeloEmpleado[])=>{
+      this.listadoEmpleados=datos;
+    })
   }
 
   alEditar(empleado:ModeloEmpleado){

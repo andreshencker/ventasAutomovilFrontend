@@ -27,6 +27,16 @@ export class EmpleadoService {
     return this.http.get<ModeloEmpleado[]>(`${this.url}/cargo-empleados/${id}/empleados`);
   }
 
+  ObtenerEmpleadoDocumento(id:string):Observable<ModeloEmpleado[]>{
+    return this.http.get<ModeloEmpleado[]>(`${this.url}/cargo-empleados/empleados?filter={"where":{"documento":${id}}}`);
+  }
+  ObtenerEmpleadoOrderAsc():Observable<ModeloEmpleado[]>{
+    return this.http.get<ModeloEmpleado[]>(`${this.url}/cargo-empleados/empleados?filter={"order":["nombres ASC"]}`);
+  }
+  ObtenerEmpleadoOrderDes():Observable<ModeloEmpleado[]>{
+    return this.http.get<ModeloEmpleado[]>(`${this.url}/cargo-empleados/empleados?filter={"order":["nombres DES"]}`);
+  }
+
   CrearEmpleado(p:ModeloEmpleado):Observable<ModeloEmpleado>{
     return this.http.post<ModeloEmpleado>(`${this.url}/empleados`,p,{
       headers:new HttpHeaders({
