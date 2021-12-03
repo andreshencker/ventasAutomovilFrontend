@@ -1,3 +1,4 @@
+import { FormularioEmpleadoComponent } from './../componentes/form/formulario-empleado/formulario-empleado.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentesModule } from './../componentes/componentes.module';
 import { NgModule } from '@angular/core';
@@ -105,7 +106,8 @@ import { EliminarMarcaComponent } from './marca/eliminar-marca/eliminar-marca.co
     MensajesModule,
     ComponentesModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ]
 })
 export class AdministradorModule { }

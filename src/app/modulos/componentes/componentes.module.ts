@@ -1,3 +1,5 @@
+import { EmpleadoService } from './../../servicios/empleado/empleado.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BarraNavegacionInicioComponent } from './nav/barra-navegacion-inicio/barra-navegacion-inicio.component';
@@ -27,7 +29,10 @@ import { TarjetaEmpleadoComponent } from './card/tarjeta-empleado/tarjeta-emplea
     TarjetaEmpleadoComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
   ],
   exports:[
     BarraNavegacionInicioComponent,
