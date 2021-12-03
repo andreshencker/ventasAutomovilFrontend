@@ -1,4 +1,4 @@
-import { EmpleadoService } from './../../servicios/empleado/empleado.service';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,7 +12,7 @@ import { TarjetaVehiculoComponent } from './card/tarjeta-vehiculo/tarjeta-vehicu
 import { CarouselVehiculoComponent } from './carousel/carousel-vehiculo/carousel-vehiculo.component';
 import { FormularioEmpleadoComponent } from './form/formulario-empleado/formulario-empleado.component';
 import { TarjetaEmpleadoComponent } from './card/tarjeta-empleado/tarjeta-empleado.component';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -26,13 +26,17 @@ import { TarjetaEmpleadoComponent } from './card/tarjeta-empleado/tarjeta-emplea
     TarjetaVehiculoComponent,
     CarouselVehiculoComponent,
     FormularioEmpleadoComponent,
-    TarjetaEmpleadoComponent
+    TarjetaEmpleadoComponent,
+
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    
+    NgxPaginationModule,
+    ScrollingModule
+
+
   ],
   exports:[
     BarraNavegacionInicioComponent,
@@ -44,7 +48,8 @@ import { TarjetaEmpleadoComponent } from './card/tarjeta-empleado/tarjeta-emplea
     TarjetaVehiculoComponent,
     CarouselVehiculoComponent,
     FormularioEmpleadoComponent,
-    TarjetaEmpleadoComponent
+    TarjetaEmpleadoComponent,
+
   ]
 })
 export class ComponentesModule { }

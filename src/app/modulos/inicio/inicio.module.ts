@@ -11,16 +11,17 @@ import { ContactanosComponent } from './contactanos/contactanos.component';
   declarations: [
     InicioComponent,
     SobreNosotrosComponent,
-    ContactanosComponent,    
+    ContactanosComponent,
   ],
   imports: [
     CommonModule,
     InicioRoutingModule,
     ComponentesModule,
-    MensajesModule    
+    MensajesModule ,
+    
   ],
   exports:[
-    
+
   ]
 })
 export class InicioModule { }

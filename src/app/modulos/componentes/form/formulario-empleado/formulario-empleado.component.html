@@ -1,22 +1,22 @@
 
 <div class="container">
   <h4>Datos del Empleado</h4>
-  <form #empleadoForm="ngForm" [formGroup]="fgValidador" method="post" (click)="onSubmit(empleadoForm.value)" >
-    <div class="form-group mt-2 col-6">
+  <form  [formGroup]="fgValidador" method="post" >
+    <div class="form-group mt-2 col-6" hidden>
       <label for="id">Id</label>
-      <input type="text" #id [(ngModel)]="servicoEmpleado.seleccionarEmpleado.id"  formControlName="id" name="id" class="form-control">
+      <input type="text"  [(ngModel)]="servicoEmpleado.seleccionarEmpleado.id"  formControlName="id" name="id" class="form-control">
     </div>
 
     <div class="row">
       <div class="form-group mt-2 col-6">
         <label for="documento">Documento</label>
-        <input type="text"  #documento [(ngModel)]="servicoEmpleado.seleccionarEmpleado.documento" formControlName="documento" name="documento" class="form-control" maxlength="10">
+        <input type="text"   [(ngModel)]="servicoEmpleado.seleccionarEmpleado.documento" formControlName="documento" name="documento" class="form-control" maxlength="10">
         <div *ngIf="getValue('documento')?.invalid && (getValue('documento')?.touched ||getValue('documento')?.dirty) ">Debe de contener como minimo 6 números.</div>
 
       </div>
       <div class="form-group mt-2 col-6">
         <label for="nombres">Nombres</label>
-        <input type="text" #nombres [(ngModel)]="servicoEmpleado.seleccionarEmpleado.nombres" formControlName="nombres" name="nombres" class="form-control">
+        <input type="text"  [(ngModel)]="servicoEmpleado.seleccionarEmpleado.nombres" formControlName="nombres" name="nombres" class="form-control">
         <div *ngIf="getValue('nombres')?.errors?.['required'] && (getValue('nombres')?.touched ||getValue('nombres')?.dirty)">El campo es requerido</div>
       </div>
     </div>
@@ -24,12 +24,12 @@
     <div class="row">
       <div class="form-group mt-2 col-6">
         <label for="apellidos">Apellidos</label>
-        <input type="text" #apellidos [(ngModel)]="servicoEmpleado.seleccionarEmpleado.apellidos" formControlName="apellidos" name="apellidos" class="form-control">
+        <input type="text" [(ngModel)]="servicoEmpleado.seleccionarEmpleado.apellidos" formControlName="apellidos" name="apellidos" class="form-control">
         <div *ngIf="getValue('apellidos')?.errors?.['required'] && (getValue('apellidos')?.touched ||getValue('apellidos')?.dirty)">El campo es requerido</div>
       </div>
       <div class="form-group mt-2 col-6">
         <label for="correo">Correo</label>
-        <input type="email" #correo [(ngModel)]="servicoEmpleado.seleccionarEmpleado.correo" formControlName="correo" name="correo" class="form-control">
+        <input type="email"  [(ngModel)]="servicoEmpleado.seleccionarEmpleado.correo" formControlName="correo" name="correo" class="form-control">
         <div *ngIf="getValue('correo')?.invalid && (getValue('correo')?.touched ||getValue('correo')?.dirty) ">Ingrese un correo valido</div>
       </div>
     </div>
@@ -37,12 +37,12 @@
     <div class="row">
       <div class="form-group mt-2 col-6">
         <label for="celular">Celular</label>
-        <input type="tel" #celular [(ngModel)]="servicoEmpleado.seleccionarEmpleado.celular" formControlName="celular" maxlength="10"  name="celular" class="form-control">
+        <input type="tel"  [(ngModel)]="servicoEmpleado.seleccionarEmpleado.celular" formControlName="celular" maxlength="10"  name="celular" class="form-control">
         <div *ngIf="getValue('celular')?.invalid && (getValue('celular')?.touched || getValue('celular')?.dirty) ">Debe de contener como minimo 10 números.</div>
       </div>
       <div class="form-group mt-2 col-6">
         <label for="cargo">Cargo</label>
-        <select #cargo [(ngModel)]="servicoEmpleado.seleccionarEmpleado.cargoEmpleadoId" formControlName="cargo" name="cargo" class="form-control">
+        <select  [(ngModel)]="servicoEmpleado.seleccionarEmpleado.cargoEmpleadoId" formControlName="cargo" name="cargo" class="form-control">
           <option  value="">SELECCIONE UNA OPCIÓN</option>
           <option  value="{{p.id}}" *ngFor="let p of listadoCargos">{{p.cargoEmpleado | uppercase}}</option>
         </select>
@@ -50,8 +50,8 @@
       </div>
     </div>
     <div class="form-group mt-3 ">
-      <button [disabled]="!fgValidador.valid" type="submit" class=" btn btn-primary"><i class="fas fa-plus-circle"></i> Crear</button>
-      <button type="reset" class="btn btn-secondary"><i class="fas fa-sync-alt" (click)="limpiarFormulario(empleadoForm.value)"></i> Limpiar</button>
+      <button [disabled]="!fgValidador.valid" type="submit" class=" btn btn-primary"(click)="onSubmit()" ><i class="fas fa-plus-circle"></i> Guardar</button>
+      <button type="reset" class="btn btn-secondary"><i class="fas fa-sync-alt" (click)="limpiarFormulario()"></i> Limpiar</button>
     </div>
   </form>
 </div>

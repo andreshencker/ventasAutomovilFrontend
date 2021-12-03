@@ -23,8 +23,8 @@ export class EmpleadoService {
   ObtenerEmpleado(id:string):Observable<ModeloEmpleado>{
     return this.http.get<ModeloEmpleado>(`${this.url}/empleados/${id}`);
   }
-  ObtenerEmpleadoByCargo(id:string):Observable<ModeloEmpleado>{
-    return this.http.get<ModeloEmpleado>(`${this.url}/cargo-empleados/${id}/empleados`);
+  ObtenerEmpleadoByCargo(id:string):Observable<ModeloEmpleado[]>{
+    return this.http.get<ModeloEmpleado[]>(`${this.url}/cargo-empleados/${id}/empleados`);
   }
 
   CrearEmpleado(p:ModeloEmpleado):Observable<ModeloEmpleado>{

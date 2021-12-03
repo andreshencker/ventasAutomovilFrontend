@@ -22,7 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     IdentificacionEmpleadoComponent,
     RegistroClienteComponent,
     RecuperarContrasenaComponent,
-    CambiarContrasenaComponent,    
+    CambiarContrasenaComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     ComponentesModule,
-    MensajesModule      
+    MensajesModule
   ],
   exports:[
 
