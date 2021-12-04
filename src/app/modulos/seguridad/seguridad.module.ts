@@ -1,11 +1,7 @@
 import { MensajesModule } from './../mensajes/mensajes.module';
 import { ComponentesModule } from './../componentes/componentes.module';
-
-import { InicioModule } from './../inicio/inicio.module';
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SeguridadRoutingModule } from './seguridad-routing.module';
 import { IdentificacionClienteComponent } from './identificacion-cliente/identificacion-cliente.component';
 import { IdentificacionEmpleadoComponent } from './identificacion-empleado/identificacion-empleado.component';

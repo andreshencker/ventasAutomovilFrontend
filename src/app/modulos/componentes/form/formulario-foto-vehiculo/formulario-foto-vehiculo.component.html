@@ -1,0 +1,25 @@
+<div class="container">
+  <h4>Datos del Vehiculo</h4>
+  <form  [formGroup]="fgValidador" method="post" >
+
+      <div class="form-group mt-2 col-6" >
+        <label for="id">Id</label>
+        <input type="text"  [(ngModel)]="servicioFotoVehiculo.seleccionarFoto.id"  formControlName="id" name="id" class="form-control">
+        <div *ngIf="getValue('id')?.errors?.['required'] && (getValue('id')?.touched ||getValue('id')?.dirty)">El campo es requerido</div>
+      </div>
+      <div class="form-group mt-2 col-6" >
+        <label for="nombre">Nombre/ Url</label>
+        <input type="text"  [(ngModel)]="servicioFotoVehiculo.seleccionarFoto.nombre"  formControlName="nombre" name="nombre" class="form-control">
+        <div *ngIf="getValue('nombre')?.errors?.['required'] && (getValue('nombre')?.touched ||getValue('nombre')?.dirty)">El campo es requerido</div>
+      </div>
+      <div class="form-group mt-2 col-6" >
+        <label for="vehiculo">Vehiculo</label>
+        <input type="text"  [(ngModel)]="servicioFotoVehiculo.seleccionarFoto.vehiculoId"  formControlName="vehiculo" name="vehiculo" class="form-control">
+        <div *ngIf="getValue('vehiculo')?.errors?.['required'] && (getValue('vehiculo')?.touched ||getValue('vehiculo')?.dirty)">El campo es requerido</div>
+      </div>
+      <div class="form-group mt-3 ">
+        <button [disabled]="!fgValidador.valid" type="submit" class=" btn btn-primary"(click)="onSubmit()" ><i class="fas fa-plus-circle"></i> Guardar</button>
+        <button type="reset" class="btn btn-secondary"><i class="fas fa-sync-alt" (click)="limpiarFormulario()"></i> Limpiar</button>
+      </div>
+  </form>
+</div>

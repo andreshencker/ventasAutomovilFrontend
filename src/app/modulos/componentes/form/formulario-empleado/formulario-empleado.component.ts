@@ -1,6 +1,6 @@
 import { EmpleadoService } from 'src/app/servicios/empleado/empleado.service';
-import { Component, OnInit, NgModule } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { ModeloCargoEmpleado } from 'src/app/modelos/cargoEmpleado.modelo';
 import { CargoEmpleadoService } from 'src/app/servicios/cargoEmpleado/cargo-empleado.service';
 import Swal from 'sweetalert2';
@@ -29,7 +29,7 @@ export class FormularioEmpleadoComponent implements OnInit {
     return this.fgValidador.get(value);
   }
 
-
+  EmpleadoDoc:ModeloEmpleado=new ModeloEmpleado();
   listadoCargos:ModeloCargoEmpleado[]=[];
 
   constructor(
@@ -40,6 +40,7 @@ export class FormularioEmpleadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.ObtenerListadoCargo();
+
   }
 
   ObtenerListadoCargo(){
@@ -47,8 +48,6 @@ export class FormularioEmpleadoComponent implements OnInit {
       this.listadoCargos=datos;
     })
   }
-
-
   RegistroGuardado(){
     Swal.fire({
       position: 'center',
@@ -79,6 +78,15 @@ export class FormularioEmpleadoComponent implements OnInit {
     })
   }
 
+  ExisteRegistro(){
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'Error el registro ya existe',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
 
 
 
@@ -91,12 +99,16 @@ export class FormularioEmpleadoComponent implements OnInit {
     e.celular=this.fgValidador.controls["celular"].value
     e.cargoEmpleadoId=this.fgValidador.controls["cargo"].value
     if(this.fgValidador.controls["id"].value==null){
-      this.servicoEmpleado.CrearEmpleado(e).subscribe((datos:ModeloEmpleado)=>{
-        this.RegistroGuardado();
-        this.limpiarFormulario();
-       },(error:any)=>{
-         this.ErrorRegistro()
-       })
+      this.servicoEmpleado.ObtenerEmpleadoDocumento(this.fgValidador.controls["documento"].value).subscribe((datos:ModeloEmpleado)=>{
+          this.servicoEmpleado.CrearEmpleado(e).subscribe((datos:ModeloEmpleado)=>{
+            this.RegistroGuardado();
+            this.limpiarFormulario();
+           },(error:any)=>{
+             this.ErrorRegistro()
+           })
+      },(error:any)=>{
+        this.ExisteRegistro()
+      })
     }else{
       e.id=this.fgValidador.controls["id"].value;
       this.servicoEmpleado.ActualizarEmpleado(e).subscribe((datos:ModeloEmpleado)=>{

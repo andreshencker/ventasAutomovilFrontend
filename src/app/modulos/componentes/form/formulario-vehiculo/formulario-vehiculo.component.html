@@ -1,0 +1,78 @@
+<div class="container">
+  <h4>Datos del Vehiculo</h4>
+  <form  [formGroup]="fgValidador" method="post" >
+    <div class="card card-body">
+      <div class="form-group mt-2 col-6" >
+        <label for="id">Id</label>
+        <input type="text"  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.id"  formControlName="id" name="id" class="form-control">
+      </div>
+      <div class="row">
+        <div class="form-group mt-2 col-6">
+          <label for="nombre">Nombre</label>
+          <input type="text"   [(ngModel)]="servicoVehiculo.seleccionarVehiculo.nombre" formControlName="nombre" name="nombre" class="form-control" maxlength="10">
+          <div *ngIf="getValue('nombre')?.errors?.['required'] && (getValue('nombre')?.touched ||getValue('nombre')?.dirty)">El campo es requerido</div>
+        </div>
+        <div class="form-group mt-2 col-6">
+          <label for="modelo">Modelo</label>
+          <select [(ngModel)]="servicoVehiculo.seleccionarVehiculo.modelo" formControlName="modelo" name="modelo" class="form-control">
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+          </select>
+          <div *ngIf="getValue('modelo')?.errors?.['required'] && (getValue('modelo')?.touched ||getValue('modelo')?.dirty)">El campo es requerido</div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="form-group mt-2 col-6">
+          <label for="marca">Marca</label>
+          <select  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.marcaId" formControlName="marca" name="marca" class="form-control">
+            <option  value="">SELECCIONE UNA OPCIÓN</option>
+            <option  value="{{p.id}}" *ngFor="let p of listadoMarca">{{p.marca | uppercase}}</option>
+          </select>
+          <div *ngIf="getValue('marca')?.invalid && (getValue('marca')?.touched ||getValue('marca')?.dirty) ">Seleccione un valor</div>
+        </div>
+        <div class="form-group mt-2 col-6">
+          <label for="tipoVehiculo">Tipo Vehiculo</label>
+          <select  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.tipoVehiculoId" formControlName="tipoVehiculo" name="tipoVehiculo" class="form-control">
+            <option  value="">SELECCIONE UNA OPCIÓN</option>
+            <option  value="{{p.id}}" *ngFor="let p of listadoTipoVehiculos">{{p.tipoVehiculo | uppercase}}</option>
+          </select>
+          <div *ngIf="getValue('tipoVehiculo')?.invalid && (getValue('tipoVehiculo')?.touched ||getValue('tipoVehiculo')?.dirty) ">Seleccione un valor</div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="form-group mt-2 col-6">
+          <label for="tipoTransaccion">Tipo Transaccion</label>
+          <select  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.tipoTransaccionId" formControlName="tipoTransaccion" name="tipoTransaccion" class="form-control">
+            <option  value="">SELECCIONE UNA OPCIÓN</option>
+            <option  value="{{p.id}}" *ngFor="let p of listadoTipoTransacciones">{{p.tipoTransaccion | uppercase}}</option>
+          </select>
+          <div *ngIf="getValue('tipoTransaccion')?.invalid && (getValue('tipoTransaccion')?.touched ||getValue('tipoTransaccion')?.dirty) ">Seleccione un valor</div>
+        </div>
+        <div class="form-group mt-2 col-6">
+          <label for="descripcion">Descripcion</label>
+          <textarea  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.descripcion" formControlName="descripcion" name="descripcion" class="form-control" cols="30" rows="1"></textarea>
+          <div *ngIf="getValue('descripcion')?.errors?.['required'] && (getValue('descripcion')?.touched ||getValue('descripcion')?.dirty)">El campo es requerido</div>
+        </div>
+      </div>
+      <div class="form-group mt-3 ">
+        <button [disabled]="!fgValidador.valid" type="submit" class=" btn btn-primary"(click)="onSubmit()" ><i class="fas fa-plus-circle"></i> Guardar</button>
+        <button type="reset" class="btn btn-secondary"><i class="fas fa-sync-alt" (click)="limpiarFormulario()"></i> Limpiar</button>
+      </div>
+    </div>
+  </form>
+</div>

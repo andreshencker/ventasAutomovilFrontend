@@ -13,6 +13,9 @@ import { CarouselVehiculoComponent } from './carousel/carousel-vehiculo/carousel
 import { FormularioEmpleadoComponent } from './form/formulario-empleado/formulario-empleado.component';
 import { TarjetaEmpleadoComponent } from './card/tarjeta-empleado/tarjeta-empleado.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { FormularioVehiculoComponent } from './form/formulario-vehiculo/formulario-vehiculo.component';
+import { FormularioFotoVehiculoComponent } from './form/formulario-foto-vehiculo/formulario-foto-vehiculo.component';
+import { TableFotoVehiculoComponent } from './table/table-foto-vehiculo/table-foto-vehiculo.component';
 
 
 @NgModule({
@@ -27,6 +30,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     CarouselVehiculoComponent,
     FormularioEmpleadoComponent,
     TarjetaEmpleadoComponent,
+    FormularioVehiculoComponent,
+    FormularioFotoVehiculoComponent,
+    TableFotoVehiculoComponent,
 
   ],
   imports: [
@@ -49,6 +55,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     CarouselVehiculoComponent,
     FormularioEmpleadoComponent,
     TarjetaEmpleadoComponent,
+    FormularioVehiculoComponent,
+    FormularioFotoVehiculoComponent,
+    TableFotoVehiculoComponent
 
   ]
 })

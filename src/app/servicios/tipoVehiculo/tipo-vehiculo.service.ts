@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ModeloCiudad } from 'src/app/modelos/ciudad.modelo';
 import { ModeloTipoVehiculo } from 'src/app/modelos/tipoVehiculo.modelo';
 import { SeguridadService } from '../seguridad.service';
 

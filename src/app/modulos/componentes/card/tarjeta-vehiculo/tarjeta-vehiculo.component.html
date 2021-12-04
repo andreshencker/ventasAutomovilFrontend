@@ -1,7 +1,46 @@
-<div class="card">
-    <img class="image" src="image" alt="" />
-    <div class="wrapper-text">
-      <div class="title">Lorem, ipsum</div>
-      <div class="sub-title">Lorem ipsum dolor sit amet</div>
+<cdk-virtual-scroll-viewport itemSize="10" class="viewport">
+  <div class="list-group"
+    *cdkVirtualFor="let p of listadoVehiculos | paginate: { itemsPerPage: 10, currentPage: paginaActual }">
+    <div class="card card-body list-group-item list-group-item-action">
+      <div>
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="../../../../assets/img/carro2.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="../../../../assets/img/carro10.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="../../../../assets/img/carro11.png" class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <h5 class="card-title">{{p.nombre | uppercase }} </h5>
+      <div class="card-text">Modelo: {{p.modelo}}</div>
+      <div class="card-text">Celular: {{p.descripcion}}</div>
+      <div class="card-text">Correo: {{p.tipoVehiculoId}}</div>
+      <div class="card-text">Cargo: {{p.tipoTransaccionId}}</div>
+      <div class="card-text">Cargo: {{p.marcaId}}</div>
+      <button class="btn btn-outline-secondary" (click)="alEditar(p)"><i class="far fa-edit"></i></button>
+      <button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button>
+      <button class="btn btn-outline-success"><i class="fas fa-images"></i></button>
     </div>
   </div>
+</cdk-virtual-scroll-viewport>
+<pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
+

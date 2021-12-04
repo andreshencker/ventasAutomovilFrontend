@@ -17,7 +17,7 @@ export class EmpleadoService {
   }
 
   ObtenerRegistros():Observable<ModeloEmpleado[]>{
-    return this.http.get<ModeloEmpleado[]>(`${this.url}/empleados`);
+    return this.http.get<ModeloEmpleado[]>(`${this.url}/empleados?filter={"order":["nombres ASC"]}`);
   }
 
   ObtenerEmpleado(id:string):Observable<ModeloEmpleado>{
@@ -27,8 +27,8 @@ export class EmpleadoService {
     return this.http.get<ModeloEmpleado[]>(`${this.url}/cargo-empleados/${id}/empleados`);
   }
 
-  ObtenerEmpleadoDocumento(id:string):Observable<ModeloEmpleado[]>{
-    return this.http.get<ModeloEmpleado[]>(`${this.url}/cargo-empleados/empleados?filter={"where":{"documento":${id}}}`);
+  ObtenerEmpleadoDocumento(id:string):Observable<ModeloEmpleado>{
+    return this.http.get<ModeloEmpleado>(`${this.url}/cargo-empleados/empleados?filter={"where":{"documento":${id}}}`);
   }
   ObtenerEmpleadoOrderAsc():Observable<ModeloEmpleado[]>{
     return this.http.get<ModeloEmpleado[]>(`${this.url}/cargo-empleados/empleados?filter={"order":["nombres ASC"]}`);
