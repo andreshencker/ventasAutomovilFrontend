@@ -14,34 +14,14 @@ import { Router } from '@angular/router';
 })
 export class CrearEmpleadoComponent implements OnInit {
 
-
-
-  listadoCargos:ModeloCargoEmpleado[]=[];
-  listadoEmpleados:ModeloEmpleado[]=[];
-
-
-
   constructor(
-    private servicioEmpleado:EmpleadoService,
-    private cargoServicio:CargoEmpleadoService
     ) { }
 
 
   ngOnInit(): void {
-    this.ObtenerListadoCargo();
-    this.ObtenerListadoEmpleado();
   }
 
-  ObtenerListadoCargo(){
-    this.cargoServicio.ObtenerRegistros().subscribe((datos:ModeloCargoEmpleado[])=>{
-      this.listadoCargos=datos;
-    })
-  }
-  ObtenerListadoEmpleado(){
-    this.servicioEmpleado.ObtenerRegistros().subscribe((datos:ModeloCargoEmpleado[])=>{
-      this.listadoEmpleados=datos;
-    })
-  }
+
 
 
 

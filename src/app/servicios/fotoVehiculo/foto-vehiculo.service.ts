@@ -25,6 +25,10 @@ export class FotoVehiculoService {
     return this.http.get<ModeloFotoVehiculo>(`${this.url}/foto-vehiculos/${id}`);
   }
 
+  ObtenerFortoVehiculoByVehiculo(id:string):Observable<ModeloFotoVehiculo[]>{
+    return this.http.get<ModeloFotoVehiculo[]>(`${this.url}/vehiculos/${id}/foto-vehiculos`);
+  }
+
   CrearFotoVehiculo(tipoVehiculo:ModeloFotoVehiculo):Observable<ModeloFotoVehiculo>{
     return this.http.post<ModeloFotoVehiculo>(`${this.url}/foto-vehiculos`,tipoVehiculo,{
       headers:new HttpHeaders({

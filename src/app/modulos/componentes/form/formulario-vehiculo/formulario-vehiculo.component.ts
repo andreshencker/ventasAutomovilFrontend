@@ -1,3 +1,7 @@
+import { ModeloFotoVehiculo } from './../../../../modelos/fotoVehiculo.modelo';
+import { FotoVehiculoService } from './../../../../servicios/fotoVehiculo/foto-vehiculo.service';
+import { CatalogoVehiculoService } from './../../../../servicios/catalogoVehiculo/catalogo-vehiculo.service';
+import { ModeloCatalogoVehiculo } from './../../../../modelos/catalogoVehiculos.model';
 import { ModeloVehiculo } from './../../../../modelos/vehiculo.modelo';
 import { ModeloMarca } from './../../../../modelos/marca.modelo';
 import { ModeloTipoTransaccion } from './../../../../modelos/tipotransaccion.modelo';
@@ -20,7 +24,9 @@ export class FormularioVehiculoComponent implements OnInit {
 
   fgValidador:FormGroup=this.fb.group({
     'id':[''],
-    'nombre':['',[Validators.required]],
+    'catalogo':['',[Validators.required]],
+    'color':['',[Validators.required]],
+    'kilometraje':['',[Validators.required]],
     'modelo':['',[Validators.required]],
     'descripcion':['',[Validators.required]],
     'tipoVehiculo':['',[Validators.required,]],
@@ -31,8 +37,12 @@ export class FormularioVehiculoComponent implements OnInit {
   getValue(value:string){
     return this.fgValidador.get(value);
   }
-
+  id:string="";
+  paginaActual=1
+  listadoFotos:ModeloFotoVehiculo[]=[];
+  listadoCatalogo:ModeloCatalogoVehiculo[]=[];
   listadoTipoVehiculos:ModeloTipoVehiculo[]=[];
+  listadoVehiculos:ModeloVehiculo[]=[];
   listadoTipoTransacciones:ModeloTipoTransaccion[]=[];
   listadoMarca:ModeloMarca[]=[];
 
@@ -42,17 +52,33 @@ export class FormularioVehiculoComponent implements OnInit {
     private servicioTipoTransaccion: TipoTransaccionService,
     private servicioTipoVehiculo:TipoVehiculoService,
     private servicioMarca:MarcaService,
+    private servicioCatalogo:CatalogoVehiculoService,
+    private servicioFotoVehiculo:FotoVehiculoService
   ) { }
 
   ngOnInit(): void {
     this.ObtenerListadoTipoVehiculo();
     this.ObtenerListadoTipoTransaccion();
     this.ObtenerListadoMarca();
+    this.ObtenerListadoCatalogo();
+    this.ObtenerListadoVehiculo();
     }
 
+    ObtenerListadoVehiculo(){
+      this.servicoVehiculo.ObtenerRegistros().subscribe((datos:ModeloVehiculo[])=>{
+
+        this.listadoVehiculos=datos;
+      })
+    }
   ObtenerListadoTipoTransaccion(){
     this.servicioTipoTransaccion.ObtenerRegistros().subscribe((datos:ModeloTipoTransaccion[])=>{
       this.listadoTipoTransacciones=datos;
+    })
+  }
+
+  ObtenerListadoCatalogo(){
+    this.servicioCatalogo.ObtenerRegistros().subscribe((datos:ModeloCatalogoVehiculo[])=>{
+      this.listadoCatalogo=datos;
     })
   }
 
@@ -65,6 +91,14 @@ export class FormularioVehiculoComponent implements OnInit {
     this.servicioMarca.ObtenerRegistros().subscribe((datos:ModeloMarca[])=>{
       this.listadoMarca=datos;
     })
+  }
+
+  obtenerRegistrosFoto(vehiculo:ModeloVehiculo){
+      this.id=String(vehiculo.id);
+      this.servicioFotoVehiculo.ObtenerFortoVehiculoByVehiculo(this.id).subscribe((datos:ModeloFotoVehiculo[])=>{
+      this.listadoFotos= datos;
+    })
+
   }
 
   RegistroGuardado(){
@@ -111,16 +145,20 @@ export class FormularioVehiculoComponent implements OnInit {
 
   onSubmit(){
     let e=new ModeloVehiculo()
-    e.nombre=this.fgValidador.controls["nombre"].value
+    e.catalogoVehiculoId=this.fgValidador.controls["catalogo"].value
     e.modelo=this.fgValidador.controls["modelo"].value
     e.descripcion=this.fgValidador.controls["descripcion"].value
     e.tipoVehiculoId=this.fgValidador.controls["tipoVehiculo"].value
     e.tipoTransaccionId=this.fgValidador.controls["tipoTransaccion"].value
     e.marcaId=this.fgValidador.controls["marca"].value
+    e.catalogoVehiculoId=this.fgValidador.controls["catalogo"].value
+    e.color=this.fgValidador.controls["color"].value
+    e.kilometraje=this.fgValidador.controls["kilometraje"].value
     if(this.fgValidador.controls["id"].value==null){
       this.servicoVehiculo.CrearVehiculo(e).subscribe((datos:ModeloVehiculo)=>{
       this.RegistroGuardado();
       this.limpiarFormulario();
+      this.ObtenerListadoVehiculo();
       },(error:any)=>{
         this.ErrorRegistro()
       })
@@ -130,6 +168,7 @@ export class FormularioVehiculoComponent implements OnInit {
       this.servicoVehiculo.ActualizarVehiculo(e).subscribe((datos:ModeloVehiculo)=>{
         this.ActualizarRegistro();
         this.limpiarFormulario();
+        this.ObtenerListadoVehiculo();
        },(error:any)=>{
          this.ErrorRegistro()
        })
@@ -140,6 +179,34 @@ export class FormularioVehiculoComponent implements OnInit {
   limpiarFormulario(){
       this.fgValidador.reset();
       this.servicoVehiculo.seleccionarVehiculo=new ModeloVehiculo()
+  }
+
+  alEditar(vehiculo:ModeloVehiculo){
+    this.servicoVehiculo.seleccionarVehiculo=Object.assign({},vehiculo);
+  }
+
+  alEliminar(id:string){
+    Swal.fire({
+      title: '¿Quieres eliminar este registro?',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+          this.servicoVehiculo.EliminararVehiculo(id).subscribe((datos:ModeloVehiculo)=>{
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'registro eliminado con exito',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.ObtenerListadoVehiculo();
+        },(error:any)=>{
+          Swal.fire('error eliminando el regsitro', '', 'error');
+        })
+      }
+    })
   }
 
 

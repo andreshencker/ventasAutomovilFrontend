@@ -10,10 +10,12 @@ export class SeguridadService {
 
   url = "http://localhost:3000";
   datosUsuarioEnSesion = new BehaviorSubject<ModeloidentificarCliente>(new ModeloidentificarCliente());
-  constructor(private http:HttpClient) {  
+
+  constructor(private http:HttpClient) {
     this.VerificarSesionActual();
+    
   }
-  
+
   VerificarSesionActual(){
     let datos=this.ObtenerInformacionSesion();
     if(datos){
@@ -27,7 +29,7 @@ export class SeguridadService {
 
   ObtenerDatosUsuarioEnSesion(){
     return this.datosUsuarioEnSesion.asObservable();
-   
+
   }
 
   Identificar(usuario :string, clave :string):Observable<ModeloidentificarCliente>{
@@ -66,7 +68,7 @@ export class SeguridadService {
 
   SeHaInciadoSesion(){
     let datosString=localStorage.getItem("datosSesion");
-    return datosString;    
+    return datosString;
   }
 
   ObtenerToken(){
@@ -77,7 +79,7 @@ export class SeguridadService {
     }else{
       return '';
     }
-  }    
+  }
 
 }
 

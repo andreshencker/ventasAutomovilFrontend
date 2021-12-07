@@ -1,6 +1,53 @@
 
 <div class="container">
-  <h4>Datos del Empleado</h4>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-8">
+              <h4>Listado de Empleado</h4>
+            </div>
+            <div class="col-1">
+              <button type="button"><i class="fas fa-sort"></i> </button>
+            </div>
+            <div class="col-1">
+              <button type="button" (click)=" ObtenerListadoEmpleado()"><i class="fas fa-redo-alt"></i></button>
+            </div>
+            <div class="row">
+              <div class="form-group mt-2 col-6">
+                <label for="documento">Documento</label>
+                <input type="text" formControlName="documentoBus" class="form-control" maxlength="10">
+              </div>
+              <div class="form-group mt-2 col-6">
+                <label for="cargo">Cargo</label>
+                <select formControlName="cargoBus" class="form-control" (change)="ObtenerListadoEmpleado()">
+                  <option value="">SELECCIONE UNA OPCIÓN</option>
+                  <option value="{{p.id}}" *ngFor="let p of listadoCargos">{{p.cargoEmpleado | uppercase}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <cdk-virtual-scroll-viewport itemSize="10" class="viewport">
+          <div class="list-group"
+            *cdkVirtualFor="let p of listadoEmpleados | paginate: { itemsPerPage: 10, currentPage: paginaActual }">
+            <div class="card card-body list-group-item list-group-item-action">
+              <h5 class="card-title">{{p.nombres | uppercase }} {{p.apellidos | uppercase}}</h5>
+              <div class="card-text">Documento: {{p.documento}}</div>
+              <div class="card-text">Celular: {{p.celular}}</div>
+              <div class="card-text">Correo: {{p.correo}}</div>
+              <div class="card-text">Cargo: {{p.cargoEmpleado.cargoEmpleado | uppercase}}</div>
+              <button class="btn btn-outline-secondary" (click)="alEditar(p)" ><i class="far fa-edit"></i></button>
+              <button class="btn btn-outline-danger" (click)="alEliminar(p)"><i class="far fa-trash-alt"></i></button>
+            </div>
+          </div>
+        </cdk-virtual-scroll-viewport>
+        <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <h4>Datos del Empleado</h4>
   <form  [formGroup]="fgValidador" method="post" >
     <div class="form-group mt-2 col-6" hidden>
       <label for="id">Id</label>
@@ -54,4 +101,6 @@
       <button type="reset" class="btn btn-secondary"><i class="fas fa-sync-alt" (click)="limpiarFormulario()"></i> Limpiar</button>
     </div>
   </form>
+    </div>
+  </div>
 </div>

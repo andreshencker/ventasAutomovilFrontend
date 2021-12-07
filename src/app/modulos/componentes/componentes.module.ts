@@ -16,6 +16,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { FormularioVehiculoComponent } from './form/formulario-vehiculo/formulario-vehiculo.component';
 import { FormularioFotoVehiculoComponent } from './form/formulario-foto-vehiculo/formulario-foto-vehiculo.component';
 import { TableFotoVehiculoComponent } from './table/table-foto-vehiculo/table-foto-vehiculo.component';
+import { TrajetaFotoVehiculoComponent } from './card/trajeta-foto-vehiculo/trajeta-foto-vehiculo.component';
+import { TarjetaCatalogoVehiculoComponent } from './card/tarjeta-catalogo-vehiculo/tarjeta-catalogo-vehiculo.component';
+import { FormularioCatalogoVehiculoComponent } from './form/formulario-catalogo-vehiculo/formulario-catalogo-vehiculo.component';
 
 
 @NgModule({
@@ -33,6 +36,9 @@ import { TableFotoVehiculoComponent } from './table/table-foto-vehiculo/table-fo
     FormularioVehiculoComponent,
     FormularioFotoVehiculoComponent,
     TableFotoVehiculoComponent,
+    TrajetaFotoVehiculoComponent,
+    TarjetaCatalogoVehiculoComponent,
+    FormularioCatalogoVehiculoComponent,
 
   ],
   imports: [
@@ -57,7 +63,8 @@ import { TableFotoVehiculoComponent } from './table/table-foto-vehiculo/table-fo
     TarjetaEmpleadoComponent,
     FormularioVehiculoComponent,
     FormularioFotoVehiculoComponent,
-    TableFotoVehiculoComponent
+    TableFotoVehiculoComponent,
+    FormularioCatalogoVehiculoComponent
 
   ]
 })

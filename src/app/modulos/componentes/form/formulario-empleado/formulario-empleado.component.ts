@@ -29,8 +29,10 @@ export class FormularioEmpleadoComponent implements OnInit {
     return this.fgValidador.get(value);
   }
 
-  EmpleadoDoc:ModeloEmpleado=new ModeloEmpleado();
+
+  paginaActual=1
   listadoCargos:ModeloCargoEmpleado[]=[];
+  listadoEmpleados:ModeloEmpleado[]=[];
 
   constructor(
     private fb:FormBuilder,
@@ -40,7 +42,7 @@ export class FormularioEmpleadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.ObtenerListadoCargo();
-
+    this.ObtenerListadoEmpleado();
   }
 
   ObtenerListadoCargo(){
@@ -48,6 +50,13 @@ export class FormularioEmpleadoComponent implements OnInit {
       this.listadoCargos=datos;
     })
   }
+
+  ObtenerListadoEmpleado(){
+    this.servicoEmpleado.ObtenerRegistros().subscribe((datos:ModeloEmpleado[])=>{
+      this.listadoEmpleados=datos;
+    })
+
+}
   RegistroGuardado(){
     Swal.fire({
       position: 'center',
@@ -97,12 +106,14 @@ export class FormularioEmpleadoComponent implements OnInit {
     e.apellidos=this.fgValidador.controls["apellidos"].value
     e.correo=this.fgValidador.controls["correo"].value
     e.celular=this.fgValidador.controls["celular"].value
-    e.cargoEmpleadoId=this.fgValidador.controls["cargo"].value
+    e.cargoEmpleadoId=this.fgValidador.controls["cargo"].value;
     if(this.fgValidador.controls["id"].value==null){
+
       this.servicoEmpleado.ObtenerEmpleadoDocumento(this.fgValidador.controls["documento"].value).subscribe((datos:ModeloEmpleado)=>{
           this.servicoEmpleado.CrearEmpleado(e).subscribe((datos:ModeloEmpleado)=>{
             this.RegistroGuardado();
             this.limpiarFormulario();
+            this.ObtenerListadoEmpleado();
            },(error:any)=>{
              this.ErrorRegistro()
            })
@@ -114,11 +125,41 @@ export class FormularioEmpleadoComponent implements OnInit {
       this.servicoEmpleado.ActualizarEmpleado(e).subscribe((datos:ModeloEmpleado)=>{
         this.ActualizarRegistro();
         this.limpiarFormulario();
+        this.ObtenerListadoEmpleado();
        },(error:any)=>{
          this.ErrorRegistro()
        })
     }
 
+  }
+
+  alEditar(e:ModeloEmpleado){
+    this.servicoEmpleado.seleccionarEmpleado=Object.assign({},e);
+  }
+
+  alEliminar(e:ModeloEmpleado){
+
+    Swal.fire({
+      title: '¿Quieres eliminar este registro?',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+          this.servicoEmpleado.EliminararEmpleado(String(e.id)).subscribe((datos:ModeloEmpleado)=>{
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'registro eliminado con exito',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.ObtenerListadoEmpleado();
+        },(error:any)=>{
+          Swal.fire('error eliminando el regsitro', '', 'error');
+        })
+      }
+    })
   }
 
   limpiarFormulario(){

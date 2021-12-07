@@ -17,7 +17,7 @@ export class VehiculoService {
   }
 
   ObtenerRegistros():Observable<ModeloVehiculo[]>{
-    return this.http.get<ModeloVehiculo[]>(`${this.url}/vehiculos?filter={"order":["nombre ASC"]}`);
+    return this.http.get<ModeloVehiculo[]>(`${this.url}/vehiculos?filter={"include":[{"relation":"fotoVehiculos"},{"relation":"marca"},{"relation":"tipoTransaccion"},{"relation":"tipoVehiculo"},{"relation":"catalogoVehiculo"}]}`);
   }
 
   ObtenerVehiculo(id:string):Observable<ModeloVehiculo>{

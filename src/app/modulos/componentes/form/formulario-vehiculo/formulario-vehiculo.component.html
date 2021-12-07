@@ -1,5 +1,69 @@
 <div class="container">
-  <h4>Datos del Vehiculo</h4>
+  <div class="row">
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-8">
+              <h4>Listado de Vehiculos</h4>
+            </div>
+            <div class="col-1">
+              <button type="button"><i class="fas fa-sort"></i> </button>
+            </div>
+            <div class="col-1">
+              <button type="button" ><i class="fas fa-redo-alt"></i></button>
+            </div>
+            <div class="row">
+              <div class="form-group mt-2 col-6">
+                <label for="documento">Vehiculo</label>
+                <input type="text" formControlName="documentoBus" class="form-control" maxlength="10">
+              </div>
+            </div>
+          </div>
+        </div>
+        <cdk-virtual-scroll-viewport itemSize="10" class="viewport">
+          <div class="list-group"
+            *cdkVirtualFor="let p of listadoVehiculos | paginate: { itemsPerPage: 10, currentPage: paginaActual }">
+            <div class="card card-body list-group-item list-group-item-action">
+              <div>
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" >
+                  <div class="carousel-indicators" >
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  </div>
+                  <div class="carousel-inner" >
+                    <div class="carousel-item active" >
+                      <img *ngFor="let n of p.fotoVehiculo" src="{{n.nombre}}"  class="d-block w-100" alt="...">
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+              <h5 class="card-title">{{p.marca.marca | uppercase }} {{p.catalogoVehiculo | uppercase }} </h5>
+              <div class="card-text">Modelo: {{p.modelo}}</div>
+              <div class="card-text">Color: {{p.color}}</div>
+              <div class="card-text">Kilometraje: {{p.kilometraje}}</div>
+              <div class="card-text">Tipo Vehiculo: {{p.tipoVehiculo.tipoVehiculo}}</div>
+              <div class="card-text">Tipo Transacción: {{p.tipoTransaccion.tipoTransaccion}}</div>
+              <button class="btn btn-outline-secondary" (click)="alEditar(p)"><i class="far fa-edit"></i></button>
+              <button class="btn btn-outline-danger" (click)="alEliminar(p.id)"><i class="far fa-trash-alt"></i></button>
+              <a class="btn btn-outline-success" href="/administrador/foto-vehiculo/{{p.id}}"><i class="fas fa-images"></i></a>
+            </div>
+          </div>
+        </cdk-virtual-scroll-viewport>
+        <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
+      </div>
+    </div>
+    <div class="col-8">
+      <h4>Datos del Vehiculo</h4>
   <form  [formGroup]="fgValidador" method="post" >
     <div class="card card-body">
       <div class="form-group mt-2 col-6" >
@@ -8,9 +72,12 @@
       </div>
       <div class="row">
         <div class="form-group mt-2 col-6">
-          <label for="nombre">Nombre</label>
-          <input type="text"   [(ngModel)]="servicoVehiculo.seleccionarVehiculo.nombre" formControlName="nombre" name="nombre" class="form-control" maxlength="10">
-          <div *ngIf="getValue('nombre')?.errors?.['required'] && (getValue('nombre')?.touched ||getValue('nombre')?.dirty)">El campo es requerido</div>
+          <label for="catalogo">Nombre</label>
+          <select  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.catalogoVehiculoId" formControlName="catalogo" name="catalogo"   class="form-control" data-live-search="true">
+            <option  value="">SELECCIONE UNA OPCIÓN</option>
+            <option  value="{{p.id}}" *ngFor="let p of listadoCatalogo">{{p.nombreVehiculo | uppercase}}</option>
+          </select>
+          <div *ngIf="getValue('catalogo')?.invalid && (getValue('catalogo')?.touched ||getValue('catalogo')?.dirty) ">Seleccione un valor</div>
         </div>
         <div class="form-group mt-2 col-6">
           <label for="modelo">Modelo</label>
@@ -33,8 +100,29 @@
         </div>
       </div>
 
-      <div class="row">
 
+      <div class="row">
+        <div class="form-group mt-2 col-6">
+          <label for="color">Color</label>
+          <select [(ngModel)]="servicoVehiculo.seleccionarVehiculo.color" formControlName="color" name="color" class="form-control">
+            <option value="">SELECIONE UNA OPCIÓN</option>
+            <option value="blanco">blanco</option>
+            <option value="negro">negro</option>
+            <option value="rojo">rojo</option>
+            <option value="gris">gris</option>
+            <option value="azul">azul</option>
+            <option value="amarillo">amarillo</option>
+          </select>
+          <div *ngIf="getValue('color')?.errors?.['required'] && (getValue('color')?.touched ||getValue('color')?.dirty)">El campo es requerido</div>
+        </div>
+        <div class="form-group mt-2 col-6" >
+          <label for="kilometraje">Kilometraje</label>
+          <input type="text"  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.kilometraje"  formControlName="kilometraje" name="kilometraje" class="form-control">
+          <div *ngIf="getValue('kilometraje')?.errors?.['required'] && (getValue('kilometraje')?.touched ||getValue('kilometraje')?.dirty)">El campo es requerido</div>
+        </div>
+      </div>
+
+      <div class="row">
         <div class="form-group mt-2 col-6">
           <label for="marca">Marca</label>
           <select  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.marcaId" formControlName="marca" name="marca" class="form-control">
@@ -75,4 +163,6 @@
       </div>
     </div>
   </form>
+    </div>
+  </div>
 </div>

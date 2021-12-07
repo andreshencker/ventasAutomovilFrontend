@@ -82,11 +82,11 @@ const routes: Routes = [
     component:CrearVehiculoComponent
   },
   {
-    path:'actualizar-vehiculo/:id',
+    path:'catalogo-vehiculo',
     component:ActualizarVehiculoComponent
   },
   {
-    path:'listar-vehiculo',
+    path:'foto-vehiculo/:id',
     component:ListarVehiculoComponent
   },
   {

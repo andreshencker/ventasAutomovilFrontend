@@ -30,12 +30,10 @@
           </button>
         </div>
       </div>
-      <h5 class="card-title">{{p.nombre | uppercase }} </h5>
+      <h5 class="card-title">{{p.marcaId | uppercase }} {{p.nombre | uppercase }} </h5>
       <div class="card-text">Modelo: {{p.modelo}}</div>
-      <div class="card-text">Celular: {{p.descripcion}}</div>
-      <div class="card-text">Correo: {{p.tipoVehiculoId}}</div>
-      <div class="card-text">Cargo: {{p.tipoTransaccionId}}</div>
-      <div class="card-text">Cargo: {{p.marcaId}}</div>
+      <div class="card-text">Tipo Vehiculo: {{p.tipoVehiculoId}}</div>
+      <div class="card-text">Tipo Transacción: {{p.tipoTransaccionId}}</div>
       <button class="btn btn-outline-secondary" (click)="alEditar(p)"><i class="far fa-edit"></i></button>
       <button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button>
       <button class="btn btn-outline-success"><i class="fas fa-images"></i></button>

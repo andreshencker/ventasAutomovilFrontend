@@ -17,7 +17,7 @@ export class EmpleadoService {
   }
 
   ObtenerRegistros():Observable<ModeloEmpleado[]>{
-    return this.http.get<ModeloEmpleado[]>(`${this.url}/empleados?filter={"order":["nombres ASC"]}`);
+    return this.http.get<ModeloEmpleado[]>(`${this.url}/empleados?filter[include][]=cargoEmpleado`);
   }
 
   ObtenerEmpleado(id:string):Observable<ModeloEmpleado>{

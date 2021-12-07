@@ -26,7 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     ComponentesModule,
-    MensajesModule
+    MensajesModule,
+    
   ],
   exports:[
 

@@ -5,25 +5,29 @@
         <div class="card-header">
           <div class="row">
             <div class="col-8">
-              <h4>Listado Foto Vehiculos</h4>
+              <h4>Listado de Vehiculo</h4>
             </div>
             <div class="col-1">
-              <button type="button" ><i class="fas fa-sort"></i> </button>
+              <button type="button" (click)="ordenar()"><i class="fas fa-sort"></i> </button>
             </div>
             <div class="col-1">
-              <button type="button" (click)=" obtenerRegistrosFoto()"><i class="fas fa-redo-alt"></i></button>
+              <button type="button" (click)=" ObtenerListadoCatalogo()"><i class="fas fa-redo-alt"></i></button>
+            </div>
+            <div class="row">
+              <div class="form-group mt-2 col-6">
+                <label for="documento">Nombre Vehiculo</label>
+                <input type="text" formControlName="documentoBus" class="form-control">
+              </div>
             </div>
           </div>
         </div>
         <cdk-virtual-scroll-viewport itemSize="10" class="viewport">
           <div class="list-group"
-            *cdkVirtualFor="let p of listadoFotos | paginate: { itemsPerPage: 10, currentPage: paginaActual }">
+            *cdkVirtualFor="let p of listadoCatalogo | paginate: { itemsPerPage: 10, currentPage: paginaActual }">
             <div class="card card-body list-group-item list-group-item-action">
-              <div>
-                <img src="{{p.nombre}}" alt="">
-              </div>
+              <h5 class="card-title">{{p.nombreVehiculo | uppercase }}</h5>
               <button class="btn btn-outline-secondary" (click)="alEditar(p)"><i class="far fa-edit"></i></button>
-              <button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button>
+              <button class="btn btn-outline-danger"(click)="alEliminar(p.id)"><i class="far fa-trash-alt"></i></button>
             </div>
           </div>
         </cdk-virtual-scroll-viewport>
@@ -31,26 +35,17 @@
       </div>
     </div>
     <div class="col-8">
-      <h4>Datos del Vehiculo</h4>
+      <h4>Datos del catalogo Vehiculos</h4>
       <form [formGroup]="fgValidador" method="post">
         <div class="form-group mt-2 col-6" hidden>
           <label for="id">Id</label>
-          <input type="text" [(ngModel)]="servicioFotoVehiculo.seleccionarFoto.id" formControlName="id" name="id"
+          <input type="text" [(ngModel)]="servicoCatlogoVehiculo.seleccionarCatalogo.id" formControlName="id" name="id"
             class="form-control">
-          <div *ngIf="getValue('id')?.errors?.['required'] && (getValue('id')?.touched ||getValue('id')?.dirty)">El
-            campo es requerido</div>
         </div>
-        <div class="form-group mt-2 col-6">
-          <label for="nombre">Nombre/ Url</label>
-          <div>
-            <img src="nombre" alt="">
-          </div>
-          <input type="text" [(ngModel)]="servicioFotoVehiculo.seleccionarFoto.nombre" formControlName="nombre"
-            name="nombre" class="form-control">
-          <div
-            *ngIf="getValue('nombre')?.errors?.['required'] && (getValue('nombre')?.touched ||getValue('nombre')?.dirty)">
-            El campo es requerido</div>
-        </div>
+        <label for="catalogo">Nombre</label>
+        <input type="text" [(ngModel)]="servicoCatlogoVehiculo.seleccionarCatalogo.nombreVehiculo"
+          formControlName="catalogo" name="catalogo" class="form-control" >
+          <div *ngIf="getValue('catalogo')?.errors?.['required'] && (getValue('catalogo')?.touched ||getValue('catalogo')?.dirty)">El campo es requerido</div>
         <div class="form-group mt-3 ">
           <button [disabled]="!fgValidador.valid" type="submit" class=" btn btn-primary" (click)="onSubmit()"><i
               class="fas fa-plus-circle"></i> Guardar</button>

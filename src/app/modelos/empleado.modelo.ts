@@ -8,4 +8,5 @@ export class ModeloEmpleado{
     contrasena?:string;
     celular?:string;
     cargoEmpleadoId?:string;
+    cargoEmpleado?:ModeloCargoEmpleado[];
 }

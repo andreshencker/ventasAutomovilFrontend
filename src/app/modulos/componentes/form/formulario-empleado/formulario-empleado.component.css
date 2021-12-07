@@ -11,3 +11,8 @@ select.ng-touched.ng-invalid{
 select.ng-valid{
   border: solid 2px green;
 }
+
+.viewport{
+  height: 500px;
+  width: 400px;
+}
