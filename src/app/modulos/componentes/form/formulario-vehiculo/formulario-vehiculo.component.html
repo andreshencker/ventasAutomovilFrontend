@@ -24,7 +24,7 @@
         <cdk-virtual-scroll-viewport itemSize="10" class="viewport">
           <div class="list-group"
             *cdkVirtualFor="let p of listadoVehiculos | paginate: { itemsPerPage: 10, currentPage: paginaActual }">
-            <div class="card card-body list-group-item list-group-item-action">
+            <div class="card card-body list-group-item list-group-item-action" >
               <div>
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" >
                   <div class="carousel-indicators" >
@@ -34,7 +34,7 @@
                   </div>
                   <div class="carousel-inner" >
                     <div class="carousel-item active" >
-                      <img *ngFor="let n of p.fotoVehiculo" src="{{n.nombre}}"  class="d-block w-100" alt="...">
+                      <img  src=""  class="d-block w-100" alt="...">
                     </div>
                   </div>
                   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -47,7 +47,7 @@
                   </button>
                 </div>
               </div>
-              <h5 class="card-title">{{p.marca.marca | uppercase }} {{p.catalogoVehiculo | uppercase }} </h5>
+              <h5 class="card-title">{{p.marca.marca | uppercase }} {{p.catalogoVehiculoId | uppercase }} </h5>
               <div class="card-text">Modelo: {{p.modelo}}</div>
               <div class="card-text">Color: {{p.color}}</div>
               <div class="card-text">Kilometraje: {{p.kilometraje}}</div>

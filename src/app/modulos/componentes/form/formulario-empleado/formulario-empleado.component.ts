@@ -109,17 +109,15 @@ export class FormularioEmpleadoComponent implements OnInit {
     e.cargoEmpleadoId=this.fgValidador.controls["cargo"].value;
     if(this.fgValidador.controls["id"].value==null){
 
-      this.servicoEmpleado.ObtenerEmpleadoDocumento(this.fgValidador.controls["documento"].value).subscribe((datos:ModeloEmpleado)=>{
-          this.servicoEmpleado.CrearEmpleado(e).subscribe((datos:ModeloEmpleado)=>{
-            this.RegistroGuardado();
-            this.limpiarFormulario();
-            this.ObtenerListadoEmpleado();
-           },(error:any)=>{
-             this.ErrorRegistro()
-           })
+
+    this.servicoEmpleado.CrearEmpleado(e).subscribe((datos:ModeloEmpleado)=>{
+      this.RegistroGuardado();
+      this.limpiarFormulario();
+      this.ObtenerListadoEmpleado();
       },(error:any)=>{
-        this.ExisteRegistro()
+        this.ErrorRegistro()
       })
+
     }else{
       e.id=this.fgValidador.controls["id"].value;
       this.servicoEmpleado.ActualizarEmpleado(e).subscribe((datos:ModeloEmpleado)=>{

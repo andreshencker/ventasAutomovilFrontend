@@ -30,6 +30,10 @@ export class EmpleadoService {
   ObtenerEmpleadoDocumento(id:string):Observable<ModeloEmpleado>{
     return this.http.get<ModeloEmpleado>(`${this.url}/cargo-empleados/empleados?filter={"where":{"documento":${id}}}`);
   }
+  ObtenerEmpleadoApellidos(id:string):Observable<ModeloEmpleado>{
+    return this.http.get<ModeloEmpleado>(`${this.url}/cargo-empleados/empleados?filter={"where":{"apellidos":${id}}}`);
+  }
+
   ObtenerEmpleadoOrderAsc():Observable<ModeloEmpleado[]>{
     return this.http.get<ModeloEmpleado[]>(`${this.url}/cargo-empleados/empleados?filter={"order":["nombres ASC"]}`);
   }

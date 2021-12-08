@@ -1,6 +1,6 @@
 img{
     height: 550px;
-     
+
 }
 
 .title h4{
@@ -16,6 +16,19 @@ img{
 
 a{
     color: black;
-    text-decoration: none;    
+    text-decoration: none;
 }
 
+input.ng-touched.ng-invalid{
+  border: solid 2px tomato;
+}
+input.ng-valid{
+  border: solid 2px green;
+}
+
+select.ng-touched.ng-invalid{
+  border: solid 2px tomato;
+}
+select.ng-valid{
+  border: solid 2px green;
+}

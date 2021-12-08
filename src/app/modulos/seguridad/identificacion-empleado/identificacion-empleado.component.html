@@ -1,1 +1,36 @@
-<p>identificacion-empleado works!</p>
+<app-barra-navegacion-inicio></app-barra-navegacion-inicio>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="https://assets-global.website-files.com/5a43f26a7b791a0001995f0f/603fa8e2e855f41d7220166a_5f776c402a89c7c2216facab_asamblea-general-de-condominios-1.png"  alt=""  >
+    </div>
+    <div class="col-6">
+      <div class="container mt-5">
+        <h4>Iniciar sesión</h4>
+        <form [formGroup]="fgValidador" method="post" (ngSubmit)=" IdentificarUsuario()" >
+          <div class="form-group mt-2">
+              <label for="usuario">Correo</label>
+              <input formControlName="usuario" type="email" id="email" name="correo" class="form-control">
+              <div *ngIf="getValue('usuario')?.errors?.['required'] && (getValue('usuario')?.touched ||getValue('usuario')?.dirty)">El campo es requerido</div>
+          </div>
+          <div class="form-group mt-2">
+              <label for="clave">Contraseña</label>
+              <input formControlName="clave" type="password" id="password" name="contrasena" class="form-control">
+              <div *ngIf="getValue('clave')?.errors?.['required'] && (getValue('clave')?.touched ||getValue('clave')?.dirty)">El campo es requerido</div>
+          </div>
+          <div class="row">
+              <div class="col-12 mt-3">
+                  <a href="seguridad/recuperarContrasena">¿Olvido su contraseña?</a>
+              </div>
+          </div>
+          <div class="form-group mt-2">
+              <button [disabled]="!fgValidador.valid" type="submit"  class="form-control btn btn-primary">Ingresar</button>
+          </div>
+      </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<app-pie-pagina-inicio></app-pie-pagina-inicio>

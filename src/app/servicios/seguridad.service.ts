@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ModeloidentificarCliente } from '../modelos/identificarCliente.modelo';
+import { ModeloidentificarEmpleado } from '../modelos/identificarEmpleado.modelo';
 
 @Injectable({
   providedIn: 'root'
@@ -9,26 +10,40 @@ import { ModeloidentificarCliente } from '../modelos/identificarCliente.modelo';
 export class SeguridadService {
 
   url = "http://localhost:3000";
-  datosUsuarioEnSesion = new BehaviorSubject<ModeloidentificarCliente>(new ModeloidentificarCliente());
+  datosUsuarioEnSesionCliente = new BehaviorSubject<ModeloidentificarCliente>(new ModeloidentificarCliente());
+  datosUsuarioEnSesionEmpleado = new BehaviorSubject<ModeloidentificarEmpleado>(new ModeloidentificarEmpleado());
 
   constructor(private http:HttpClient) {
-    this.VerificarSesionActual();
-    
+    this.VerificarSesionActualCliente();
+
   }
 
-  VerificarSesionActual(){
-    let datos=this.ObtenerInformacionSesion();
+  VerificarSesionActualCliente(){
+    let datos=this.ObtenerInformacionSesionCliente();
     if(datos){
-     this.RefrescarDatosSesion(datos);
+     this.datosUsuarioEnSesionCliente.next(datos);
+    }
+  }
+  VerificarSesionActualEmpleado(){
+    let datos=this.ObtenerInformacionSesionEmpleado();
+    if(datos){
+     this.datosUsuarioEnSesionEmpleado.next(datos);
     }
   }
 
-  RefrescarDatosSesion(datos:ModeloidentificarCliente){
-    this.datosUsuarioEnSesion.next(datos);
+  RefrescarDatosSesionCliente(datos:ModeloidentificarCliente){
+    this.datosUsuarioEnSesionCliente.next(datos);
+  }
+  RefrescarDatosSesionEmpledo(datos:ModeloidentificarEmpleado){
+    this.datosUsuarioEnSesionEmpleado.next(datos);
   }
 
-  ObtenerDatosUsuarioEnSesion(){
-    return this.datosUsuarioEnSesion.asObservable();
+  ObtenerDatosUsuarioEnSesionCliente(){
+    return this.datosUsuarioEnSesionCliente.asObservable();
+
+  }
+  ObtenerDatosUsuarioEnSesionEmpleado(){
+    return this.datosUsuarioEnSesionEmpleado.asObservable();
 
   }
 
@@ -42,15 +57,40 @@ export class SeguridadService {
       })
     })
   }
+  IdentificarEmpleado(usuario :string, clave :string):Observable<ModeloidentificarEmpleado>{
+    return this.http.post<ModeloidentificarEmpleado>(`${this.url}/identificarEmpleado`,{
+      usuario:usuario,
+      clave:clave
+    },{
+      headers: new HttpHeaders({
 
-  AlmacenarSesion(datos:ModeloidentificarCliente){
+      })
+    })
+  }
+
+  AlmacenarSesionCliente(datos:ModeloidentificarCliente){
     datos.estaIdentificado=true;
     let stringDatos=JSON.stringify(datos);
     localStorage.setItem("datosSesion",stringDatos);
-    this.RefrescarDatosSesion(datos);
+    this.RefrescarDatosSesionCliente(datos);
+  }
+  AlmacenarSesionEmpelado(datos:ModeloidentificarEmpleado){
+    datos.estaIdentificado=true;
+    let stringDatos=JSON.stringify(datos);
+    localStorage.setItem("datosSesion",stringDatos);
+    this.RefrescarDatosSesionEmpledo(datos);
   }
 
-  ObtenerInformacionSesion(){
+  ObtenerInformacionSesionCliente(){
+    let datosString=localStorage.getItem("datosSesion");
+    if(datosString){
+      let datos=JSON.parse(datosString);
+      return datos;
+    }else{
+      return null;
+    }
+  }
+  ObtenerInformacionSesionEmpleado(){
     let datosString=localStorage.getItem("datosSesion");
     if(datosString){
       let datos=JSON.parse(datosString);
@@ -60,13 +100,23 @@ export class SeguridadService {
     }
   }
 
-  EliminarInformacionSesion(){
+  EliminarInformacionSesionCliente(){
     localStorage.removeItem("datosSesion");
-    this.RefrescarDatosSesion(new ModeloidentificarCliente());
+    this.RefrescarDatosSesionCliente(new ModeloidentificarCliente());
+
+  }
+  EliminarInformacionSesionEmpleado(){
+    localStorage.removeItem("datosSesion");
+    this.RefrescarDatosSesionCliente(new ModeloidentificarEmpleado());
 
   }
 
-  SeHaInciadoSesion(){
+  SeHaInciadoSesionCliente(){
+    let datosString=localStorage.getItem("datosSesion");
+    return datosString;
+  }
+
+  SeHaInciadoSesionEmpleado(){
     let datosString=localStorage.getItem("datosSesion");
     return datosString;
   }

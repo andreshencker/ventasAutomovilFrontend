@@ -37,6 +37,7 @@ export class FormularioVehiculoComponent implements OnInit {
   getValue(value:string){
     return this.fgValidador.get(value);
   }
+  
   id:string="";
   paginaActual=1
   listadoFotos:ModeloFotoVehiculo[]=[];

@@ -9,45 +9,50 @@
         </div>
         <div class="subtitle">
             <span>Se parte de una gran familia y vive una gran experiencia en uno de nuestros vehiculos</span>
-        </div>         
-        <form action="">
-            <div class="form-group mt-2">
-                <label for="name">Nombres</label>
-                <input type="text" id="name"  class="form-control" required>
-                <div class="invalid-feedback">
-                    ingrese el nombre
-                </div>
+        </div>
+        <form action="" [formGroup]="fgValidador" method="post" (ngSubmit)="registrarCliente()">
+            <div class="form-group mt-2" hidden>
+                <label for="id">id</label>
+                <input formControlName="id" type="text"   class="form-control" >
+                <div *ngIf="getValue('id')?.errors?.['required'] && (getValue('id')?.touched ||getValue('id')?.dirty)">El campo es requerido</div>
             </div>
             <div class="form-group mt-2">
-                <label for="surname">Apellido</label>
-                <input type="text" id="surname"  class="form-control" required>
-                <div class="invalid-feedback">
-                    ingrese el apellido
-                </div>
+                <label for="documento">Documento</label>
+                <input formControlName="documento" type="text"   class="form-control" >
+                <div *ngIf="getValue('documento')?.errors?.['required'] && (getValue('documento')?.touched ||getValue('documento')?.dirty)">El campo es requerido</div>
             </div>
             <div class="form-group mt-2">
-                <label for="email">Correo</label>
-                <input type="email" id="email"  class="form-control"  required>
-                <div class="invalid-feedback">
-                    ingrese un correo valido
-                </div>
+                <label for="nombres">Nombres</label>
+                <input formControlName="nombres" type="text"   class="form-control" >
+                <div *ngIf="getValue('nombres')?.errors?.['required'] && (getValue('nombres')?.touched ||getValue('nombres')?.dirty)">El campo es requerido</div>
             </div>
             <div class="form-group mt-2">
-                <label for="cellphone">Celular</label>
-                <input type="text" id="cellphone" class="form-control" required>
-                <div class="invalid-feedback">
-                    ingrese el celular
-                </div>
+                <label for="apellidos">Apellido</label>
+                <input formControlName="apellidos" type="text" id="surname"  class="form-control" >
+                <div *ngIf="getValue('apellidos')?.errors?.['required'] && (getValue('apellidos')?.touched ||getValue('apellidos')?.dirty)">El campo es requerido</div>
+
+            </div>
+            <div class="form-group mt-2">
+                <label for="correo">Correo</label>
+                <input formControlName="correo" type="email"   class="form-control"  >
+                <div *ngIf="getValue('correo')?.invalid && (getValue('correo')?.touched ||getValue('correo')?.dirty) ">Ingrese un correo valido</div>
+
+            </div>
+            <div class="form-group mt-2">
+                <label for="celular">Celular</label>
+                <input formControlName="celular" type="text" id="cellphone" class="form-control" maxlength="10">
+                <div *ngIf="getValue('celular')?.invalid && (getValue('celular')?.touched || getValue('celular')?.dirty) ">Debe de contener como minimo 10 números.</div>
+
             </div>
             <div class="col-12">
                 <a href="seguridad/identificacionCliente">¿Ya tiene cuenta?</a>
             </div>
-            <div class="form-group mt-2">            
-                <button type="submit" class="form-control btn btn-primary">Aceptar</button>
+            <div class="form-group mt-2">
+                <button [disabled]="!fgValidador.valid" type="submit" class="form-control btn btn-primary">Aceptar</button>
             </div>
         </form>
-    </div>    
-</div> 
+    </div>
+</div>
 <app-pie-pagina-inicio></app-pie-pagina-inicio>
-    
-   
+
+

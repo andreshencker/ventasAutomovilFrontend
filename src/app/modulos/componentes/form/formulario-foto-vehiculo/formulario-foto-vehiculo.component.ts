@@ -128,7 +128,7 @@ export class FormularioFotoVehiculoComponent implements OnInit {
       this.servicioFotoVehiculo.seleccionarFoto=new ModeloFotoVehiculo();
   }
 
-  alEliminar(id:string){
+  alEliminar(foto:ModeloFotoVehiculo){
 
     Swal.fire({
       title: '¿Quieres eliminar este registro?',
@@ -137,7 +137,7 @@ export class FormularioFotoVehiculoComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-          this.servicioFotoVehiculo.EliminararFotoVehiculo(id).subscribe((datos:ModeloFotoVehiculo)=>{
+          this.servicioFotoVehiculo.EliminararFotoVehiculo(String(foto.id)).subscribe((datos:ModeloFotoVehiculo)=>{
           Swal.fire({
             position: 'center',
             icon: 'success',

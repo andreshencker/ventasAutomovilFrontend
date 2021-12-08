@@ -1,9 +1,6 @@
 export class ModeloDatosCliente{
     id?:string;
-    documento?:string;
-    nombres?:string;
-    apellidos?:string;
+    nombre?:string;
     correo?:string;
-    contrasena?:string;
-    celular?:string;
+
 }
