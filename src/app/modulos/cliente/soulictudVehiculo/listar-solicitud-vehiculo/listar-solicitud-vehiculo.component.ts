@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ModeloidentificarCliente } from 'src/app/modelos/identificarCliente.modelo';
+import { SeguridadService } from 'src/app/servicios/seguridad.service';
 
 @Component({
   selector: 'app-listar-solicitud-vehiculo',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarSolicitudVehiculoComponent implements OnInit {
 
-  constructor() { }
+
+  id:string='';
+
+  constructor(
+    private fb:FormBuilder,
+
+    private servicio:SeguridadService
+
+  ) {
+    this.sesion();
+  }
 
   ngOnInit(): void {
+  }
+
+  sesion(){
+    this.servicio.ObtenerDatosUsuarioEnSesionCliente().subscribe((datos:ModeloidentificarCliente)=>{
+      this.id=String(datos.datos?.id)
+    })
   }
 
 }

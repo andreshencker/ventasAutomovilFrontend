@@ -1,0 +1,65 @@
+<div class=" mt-5 ">
+  <h4>Datos del Cliente</h4>
+  <form [formGroup]="fgValidador" method="post">
+    <div class="form-group mt-2 col-6" hidden>
+      <label for="id">Id</label>
+      <input type="text"  formControlName="id" name="id"
+        class="form-control">
+    </div>
+    <div class="form-group mt-2 col-6" >
+      <label for="clave">clave</label>
+      <input type="password"  formControlName="clave" name="id"
+        class="form-control">
+    </div>
+
+    <div class="row">
+      <div class="form-group mt-2 col-6">
+        <label for="documento">Documento</label>
+        <input type="text"  formControlName="documento"
+          name="documento" class="form-control" maxlength="10">
+        <div *ngIf="getValue('documento')?.invalid && (getValue('documento')?.touched ||getValue('documento')?.dirty) ">
+          Debe de contener como minimo 6 números.</div>
+
+      </div>
+      <div class="form-group mt-2 col-6">
+        <label for="nombres">Nombres</label>
+        <input type="text"  formControlName="nombres"
+          name="nombres" class="form-control">
+        <div
+          *ngIf="getValue('nombres')?.errors?.['required'] && (getValue('nombres')?.touched ||getValue('nombres')?.dirty)">
+          El campo es requerido</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group mt-2 col-6">
+        <label for="apellidos">Apellidos</label>
+        <input type="text"  formControlName="apellidos"
+          name="apellidos" class="form-control">
+        <div
+          *ngIf="getValue('apellidos')?.errors?.['required'] && (getValue('apellidos')?.touched ||getValue('apellidos')?.dirty)">
+          El campo es requerido</div>
+      </div>
+      <div class="form-group mt-2 col-6">
+        <label for="correo">Correo</label>
+        <input type="email"  formControlName="correo"
+          name="correo" class="form-control" readonly>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group mt-2 col-6">
+        <label for="celular">Celular</label>
+        <input type="tel"  formControlName="celular"
+          maxlength="10" name="celular" class="form-control">
+        <div *ngIf="getValue('celular')?.invalid && (getValue('celular')?.touched || getValue('celular')?.dirty) ">
+          Debe de contener como minimo 10 números.</div>
+      </div>
+    </div>
+    <div class="form-group mt-3 ">
+      <button [disabled]="!fgValidador.valid" type="submit" class=" btn btn-primary" (click)="onSubmit()"><i
+          class="fas fa-plus-circle"></i> Guardar</button>
+    </div>
+  </form>
+</div>

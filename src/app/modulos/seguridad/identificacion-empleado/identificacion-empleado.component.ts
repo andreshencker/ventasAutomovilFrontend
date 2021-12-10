@@ -85,20 +85,10 @@ export class IdentificacionEmpleadoComponent implements OnInit {
     let claveCifrada =cryptoJS.MD5(clave).toString();
     this.servicioSeguridad.IdentificarEmpleado(usuario,claveCifrada).subscribe((datos:any)=>{
       this.servicioSeguridad.AlmacenarSesionEmpelado(datos);
-      let c = JSON.stringify(datos.cargo);
+     // this.router.navigate(["/administrador/listar-ciudad"]);
+      this.router.navigate(["/administrador/crear-cargoEmpleado"])
 
-      if(c==="618e829ddb2db90aec437d22"){
-        this.router.navigate(["/asesor/listar-estudioSolicitud"]);
-        this.limpiarFormulario();
-      }else if(c==="619f1108964c5528b0df651c"){
-        this.router.navigate(["/administrador/crear-vehiculo"]);
-        this.limpiarFormulario();
-      }else{
-        alert("no lo has logrado")
-        console.log(datos)
-        this.router.navigate(["/administrador/crear-vehiculo"]);
-        this.limpiarFormulario();
-      }
+      this.limpiarFormulario();
 
     },(error:any)=>{
       this.DatosInvalidos();

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ModeloCliente } from '../modelos/cliente.modelo';
 import { ModeloidentificarCliente } from '../modelos/identificarCliente.modelo';
 import { ModeloidentificarEmpleado } from '../modelos/identificarEmpleado.modelo';
 
@@ -67,6 +68,8 @@ export class SeguridadService {
       })
     })
   }
+
+
 
   AlmacenarSesionCliente(datos:ModeloidentificarCliente){
     datos.estaIdentificado=true;

@@ -11,22 +11,29 @@ import { Subscription } from 'rxjs';
 export class BarraNavegacionAdministradorComponent implements OnInit {
 
   seInicioSesion:boolean=false;
-  nombreUsuario:string='';
+  nombre?:string='';
   susb:Subscription=new Subscription();
-  sesion:ModeloidentificarEmpleado=new ModeloidentificarEmpleado();
+
 
   constructor(
     private servicio:SeguridadService
-  ) { }
+  )
+  {
+    this.sesion();
+
+  }
 
   ngOnInit(): void {
     this.susb= this.seInicioSesion=this.servicio.ObtenerInformacionSesionEmpleado().subscribe((datos:ModeloidentificarEmpleado)=>{
-      this.nombreUsuario=String(datos.datos?.nombre);
+
       this.seInicioSesion=datos.estaIdentificado;
     })
+  }
 
-    //this.sesion=this.servicio.datosUsuarioEnSesionEmpleado;
-
+  sesion(){
+    this.servicio.ObtenerDatosUsuarioEnSesionEmpleado().subscribe((datos:ModeloidentificarEmpleado)=>{
+      this.nombre=String(datos.datos?.nombre)
+    })
   }
 
 

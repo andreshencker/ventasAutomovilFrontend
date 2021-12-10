@@ -14,21 +14,29 @@ export class BarraNavegacionClienteComponent implements OnInit {
 
   susb:Subscription=new Subscription();
 
-  nombreUsuario:string="";
+  nombre?:string="";
 
   constructor(
     private servicio:SeguridadService
-  ) { }
+  ) {
+      this.sesion();
+   }
 
   ngOnInit(): void {
-    this.susb= this.seInicioSesion=this.servicio.ObtenerInformacionSesionEmpleado().subscribe((datos:ModeloidentificarCliente)=>{
+    this.susb= this.servicio.ObtenerInformacionSesionCliente().subscribe((datos:ModeloidentificarCliente)=>{
 
       this.seInicioSesion=datos.estaIdentificado;
     })
-    this.nombreUsuario=String(this.servicio.datosUsuarioEnSesionCliente.value.datos?.nombre)
+
+
+
   }
 
-
+  sesion(){
+    this.servicio.ObtenerDatosUsuarioEnSesionCliente().subscribe((datos:ModeloidentificarCliente)=>{
+      this.nombre=datos.datos?.nombre
+    })
+  }
 
   cerrarSesion(){
     this.servicio.EliminarInformacionSesionCliente();

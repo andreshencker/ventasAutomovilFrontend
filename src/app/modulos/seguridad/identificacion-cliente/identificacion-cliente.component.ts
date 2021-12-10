@@ -50,7 +50,7 @@ export class IdentificacionClienteComponent implements OnInit {
     let claveCifrada =cryptoJS.MD5(clave).toString();
     this.servicioSeguridad.Identificar(usuario,claveCifrada).subscribe((datos:any)=>{
       this.servicioSeguridad.AlmacenarSesionCliente(datos);
-     this.router.navigate(["/cliente/listar-solicitud"])
+      this.router.navigate(["/cliente/listar-solicitud"])
     },(error:any)=>{
       this.DatosInvalidos();
 

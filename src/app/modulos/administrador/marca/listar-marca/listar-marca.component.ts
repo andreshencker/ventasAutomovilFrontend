@@ -14,7 +14,7 @@ export class ListarMarcaComponent implements OnInit {
   constructor(private servicio:MarcaService) { }
 
   ngOnInit(): void {
-    this.ObtenerListado()
+    this.ObtenerListado();
   }
 
   ObtenerListado(){

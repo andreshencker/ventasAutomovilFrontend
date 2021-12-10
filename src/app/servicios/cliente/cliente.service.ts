@@ -1,3 +1,4 @@
+import { ModeloContactoCliente } from './../../modelos/contactoCliente.modelo';
 import { ModeloCliente } from './../../modelos/cliente.modelo';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -9,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class ClienteService {
 
+  seleccionarCliente:ModeloCliente= new ModeloCliente();
   url="http://localhost:3000";
   token: string='';
   constructor(private http:HttpClient,private seguridadServicio:SeguridadService) {
@@ -23,8 +25,8 @@ export class ClienteService {
     return this.http.get<ModeloCliente>(`${this.url}/clientes/${id}`);
   }
 
-  ObtenerClienteDocumentoAndCorreo(documento:string,correo:string):Observable<ModeloCliente>{
-    return this.http.get<ModeloCliente>(`${this.url}/clientes?filter={"where":{"documento":${documento},"correo":${correo}}}`);
+  ObtenerClienteCorreo(id:string):Observable<ModeloCliente>{
+    return this.http.get<ModeloCliente>(`${this.url}/clientes?filter={"where":{"correo":"${id}"}}`);
   }
 
   CrearCliente(cliente:ModeloCliente):Observable<ModeloCliente>{
@@ -34,6 +36,15 @@ export class ClienteService {
       })
     });
   }
+  recuperarContrasenaCliente(cliente:ModeloCliente):Observable<ModeloCliente>{
+    return this.http.post<ModeloCliente>(`${this.url}/clientes/recuperarcontrasena`,cliente,{
+      headers:new HttpHeaders({
+        //'Authorization':`Bearer ${this.token}`
+      })
+    });
+  }
+
+
   ActualizarCliente(cliente:ModeloCliente):Observable<ModeloCliente>{
     return this.http.put<ModeloCliente>(`${this.url}/clientes/${cliente.id}`,cliente,{
       headers:new HttpHeaders({
@@ -41,6 +52,20 @@ export class ClienteService {
       })
     });
   }
+
+
+  /*
+  recuperarContrasenaCliente(cliente:ModeloCliente):Observable<ModeloCliente>{
+    //let id = "61afe92bf062842b401203ec"
+    return this.http.put<ModeloCliente>(`${this.url}/clientes/recuperarcontrasena/${cliente.id}`,cliente,{
+      headers:new HttpHeaders({
+        //'Authorization':`Bearer ${this.token}`
+      })
+    });
+  }*/
+
+
+
   EliminararCliente(id:string):Observable<any>{
     return this.http.delete(`${this.url}/clientes/${id}`,{
       headers:new HttpHeaders({
@@ -48,4 +73,13 @@ export class ClienteService {
       })
     });
   }
+
+  ContactoCliente(cliente:ModeloContactoCliente):Observable<ModeloContactoCliente>{
+    return this.http.post<ModeloContactoCliente>(`${this.url}/clientes/contactenos`,cliente,{
+      headers:new HttpHeaders({
+        //'Authorization':`Bearer ${this.token}`
+      })
+    });
+  }
+
 }

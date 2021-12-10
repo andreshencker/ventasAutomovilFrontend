@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MensajesModule } from './../mensajes/mensajes.module';
 import { ComponentesModule } from './../componentes/componentes.module';
 import { NgModule } from '@angular/core';
@@ -18,7 +19,9 @@ import { ContactanosComponent } from './contactanos/contactanos.component';
     InicioRoutingModule,
     ComponentesModule,
     MensajesModule ,
-    
+    FormsModule,
+    ReactiveFormsModule
+
   ],
   exports:[
 

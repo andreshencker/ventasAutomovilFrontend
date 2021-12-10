@@ -9,7 +9,7 @@ import { ListarSolicitudVehiculoComponent } from './soulictudVehiculo/listar-sol
 
 const routes: Routes = [
   {
-    path:'crear-solicitud',
+    path:'perfil',
     component:CrearSolicitudVehiculoComponent
   },
   {

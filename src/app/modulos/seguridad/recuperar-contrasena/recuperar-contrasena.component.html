@@ -1,3 +1,4 @@
+<app-barra-navegacion-inicio></app-barra-navegacion-inicio>
 <div class="row">
     <div class=" col-sm-12 col-lg-6">
         <img src="../../../../assets/img/recuperar.png"  alt=""  >
@@ -8,20 +9,22 @@
         </div>
         <div class="subtitle">
             <span>Ingrese el correo que tiene registrado.</span>
-        </div> 
-        
-        <form action="">           
+        </div>
+
+        <form [formGroup]="fgValidador" method="post" (ngSubmit)="clienteCorreo()">
             <div class="form-group mt-3">
                 <label for="correo">Correo</label>
-                <input type="email" id="email" name="correo" class="form-control">
-            </div>           
-            <div class="form-group mt-3">            
-                <button type="submit" class="btn btn-primary ">Recuperar</button>
+                <input formControlName="correo" type="email" class="form-control">
+                <div *ngIf="getValue('correo')?.errors?.['required'] && (getValue('correo')?.touched ||getValue('correo')?.dirty)">El campo es requerido</div>
+            </div>
+            <div class="form-group mt-3">
+                <button  [disabled]="!fgValidador.valid" type="submit" class="btn btn-primary">Recuperar</button>
                 <a href="seguridad/identificacionCliente" class="btn btn-secondary">Cancelar</a>
             </div>
-            <div class="form-group mt-2">            
-               
+            <div class="form-group mt-2">
+
             </div>
         </form>
-    </div>    
-</div> 
+    </div>
+</div>
+<app-pie-pagina-inicio></app-pie-pagina-inicio>

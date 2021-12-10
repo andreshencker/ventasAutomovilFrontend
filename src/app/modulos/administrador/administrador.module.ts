@@ -48,6 +48,7 @@ import { CrearMarcaComponent } from './marca/crear-marca/crear-marca.component';
 import { ActualizarMarcaComponent } from './marca/actualizar-marca/actualizar-marca.component';
 import { ListarMarcaComponent } from './marca/listar-marca/listar-marca.component';
 import { EliminarMarcaComponent } from './marca/eliminar-marca/eliminar-marca.component';
+import { ClientesComponent } from './clientes/clientes/clientes.component';
 
 
 
@@ -95,6 +96,7 @@ import { EliminarMarcaComponent } from './marca/eliminar-marca/eliminar-marca.co
     ActualizarMarcaComponent,
     ListarMarcaComponent,
     EliminarMarcaComponent,
+    ClientesComponent,
 
 
 

@@ -43,8 +43,13 @@ import { CrearEstadoSolicitudComponent } from './estadoSolicitud/crear-estado-so
 import { ActualizarEstadoSolicitudComponent } from './estadoSolicitud/actualizar-estado-solicitud/actualizar-estado-solicitud.component';
 import { ListarEstadoSolicitudComponent } from './estadoSolicitud/listar-estado-solicitud/listar-estado-solicitud.component';
 import { EliminarEstadoSolicitudComponent } from './estadoSolicitud/eliminar-estado-solicitud/eliminar-estado-solicitud.component';
+import { ClientesComponent } from './clientes/clientes/clientes.component';
 
 const routes: Routes = [
+  {
+    path:'clientes',
+    component:ClientesComponent
+  },
   {
     path:'crear-ciudad',
     component:CrearCiudadComponent
