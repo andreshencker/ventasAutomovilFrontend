@@ -183,7 +183,7 @@ const routes: Routes = [
     component:CrearMarcaComponent
   },
   {
-    path:'actualizar-marca/:id',
+    path:'marcaTipoVehiculo/:id',
     component:ActualizarMarcaComponent
   },
   {

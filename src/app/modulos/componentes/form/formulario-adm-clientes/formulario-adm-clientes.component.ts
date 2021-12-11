@@ -15,6 +15,7 @@ export class FormularioAdmClientesComponent implements OnInit {
 
   fgValidador:FormGroup=this.fb.group({
     'id':[''],
+    'clave':[''],
     'documento':['',[Validators.required,Validators.minLength(6)]],
     'nombres':['',[Validators.required]],
     'apellidos':['',[Validators.required]],
@@ -92,6 +93,7 @@ export class FormularioAdmClientesComponent implements OnInit {
     e.apellidos=this.fgValidador.controls["apellidos"].value
     e.correo=this.fgValidador.controls["correo"].value
     e.celular=this.fgValidador.controls["celular"].value
+    e.contrasena=this.fgValidador.controls["clave"].value
 
     if(this.fgValidador.controls["id"].value==null){
       Swal.fire({

@@ -37,7 +37,7 @@ export class FormularioVehiculoComponent implements OnInit {
   getValue(value:string){
     return this.fgValidador.get(value);
   }
-  
+
   id:string="";
   paginaActual=1
   listadoFotos:ModeloFotoVehiculo[]=[];
@@ -67,7 +67,6 @@ export class FormularioVehiculoComponent implements OnInit {
 
     ObtenerListadoVehiculo(){
       this.servicoVehiculo.ObtenerRegistros().subscribe((datos:ModeloVehiculo[])=>{
-
         this.listadoVehiculos=datos;
       })
     }
@@ -99,7 +98,6 @@ export class FormularioVehiculoComponent implements OnInit {
       this.servicioFotoVehiculo.ObtenerFortoVehiculoByVehiculo(this.id).subscribe((datos:ModeloFotoVehiculo[])=>{
       this.listadoFotos= datos;
     })
-
   }
 
   RegistroGuardado(){

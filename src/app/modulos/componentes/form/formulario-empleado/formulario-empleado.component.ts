@@ -1,3 +1,5 @@
+import { CiudadService } from './../../../../servicios/ciudad/ciudad.service';
+import { ModeloCiudad } from './../../../../modelos/ciudad.modelo';
 import { EmpleadoService } from 'src/app/servicios/empleado/empleado.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
@@ -17,12 +19,14 @@ export class FormularioEmpleadoComponent implements OnInit {
 
   fgValidador:FormGroup=this.fb.group({
     'id':[''],
+    'clave':[''],
     'documento':['',[Validators.required,Validators.minLength(6)]],
     'nombres':['',[Validators.required]],
     'apellidos':['',[Validators.required]],
     'correo':['',[Validators.required,Validators.email]],
     'celular':['',[Validators.required,Validators.minLength(10)]],
     'cargo':['',[Validators.required]],
+    'ciudad':['',[Validators.required]],
   })
 
   getValue(value:string){
@@ -33,18 +37,26 @@ export class FormularioEmpleadoComponent implements OnInit {
   paginaActual=1
   listadoCargos:ModeloCargoEmpleado[]=[];
   listadoEmpleados:ModeloEmpleado[]=[];
+  listadoCiudades:ModeloCiudad[]=[];
 
   constructor(
     private fb:FormBuilder,
     public servicoEmpleado:EmpleadoService,
-    private cargoServicio:CargoEmpleadoService
+    private cargoServicio:CargoEmpleadoService,
+    private servicioCiudad:CiudadService
   ) { }
 
   ngOnInit(): void {
     this.ObtenerListadoCargo();
     this.ObtenerListadoEmpleado();
+    this.ObtenerListadoCiudad();
   }
 
+  ObtenerListadoCiudad(){
+    this.servicioCiudad.ObtenerRegistros().subscribe((datos:ModeloCiudad[])=>{
+      this.listadoCiudades=datos;
+    })
+  }
   ObtenerListadoCargo(){
     this.cargoServicio.ObtenerRegistros().subscribe((datos:ModeloCargoEmpleado[])=>{
       this.listadoCargos=datos;
@@ -107,6 +119,8 @@ export class FormularioEmpleadoComponent implements OnInit {
     e.correo=this.fgValidador.controls["correo"].value
     e.celular=this.fgValidador.controls["celular"].value
     e.cargoEmpleadoId=this.fgValidador.controls["cargo"].value;
+    e.contrasena=this.fgValidador.controls["clave"].value;
+    e.ciudadId=this.fgValidador.controls["ciudad"].value;
     if(this.fgValidador.controls["id"].value==null){
 
 

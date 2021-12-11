@@ -13,15 +13,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./crear-empleado.component.css']
 })
 export class CrearEmpleadoComponent implements OnInit {
-
+  listadoEmpleados:ModeloEmpleado[]=[];
   constructor(
-    ) { }
+    public servicoEmpleado:EmpleadoService,
+    ) {
+      this.ObtenerListadoEmpleado();
+     }
 
 
   ngOnInit(): void {
   }
 
-
+  ObtenerListadoEmpleado(){
+    this.servicoEmpleado.ObtenerRegistros().subscribe((datos:ModeloEmpleado[])=>{
+      this.listadoEmpleados=datos;
+    })
+  }
 
 
 

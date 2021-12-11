@@ -41,7 +41,7 @@ export class ContactanosComponent implements OnInit {
       icon: 'success',
       title: 'En breve nuestro personal se contactará',
       showConfirmButton: false,
-      timer: 1500
+      timer: 3500
     })
   }
 

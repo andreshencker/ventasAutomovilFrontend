@@ -1,3 +1,4 @@
+import { ModeloCiudad } from './ciudad.modelo';
 import { ModeloCargoEmpleado } from './cargoEmpleado.modelo';
 export class ModeloEmpleado{
     id?:string;
@@ -8,5 +9,7 @@ export class ModeloEmpleado{
     contrasena?:string;
     celular?:string;
     cargoEmpleadoId?:string;
+    ciudadId?:string;
     cargoEmpleado?:ModeloCargoEmpleado[];
+    ciudad?:ModeloCiudad[];
 }

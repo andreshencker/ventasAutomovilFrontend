@@ -18,7 +18,7 @@ export class ClienteService {
   }
 
   ObtenerRegistros():Observable<ModeloCliente[]>{
-    return this.http.get<ModeloCliente[]>(`${this.url}/clientes`);
+    return this.http.get<ModeloCliente[]>(`${this.url}/clientes?filter={"order":["nombres ASC"]}`);
   }
 
   ObtenerCliente(id:string):Observable<ModeloCliente>{

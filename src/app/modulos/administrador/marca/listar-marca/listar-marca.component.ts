@@ -1,6 +1,9 @@
-import { MarcaService } from './../../../../servicios/marca/marca.service';
-import { ModeloMarca } from './../../../../modelos/marca.modelo';
+
 import { Component, OnInit } from '@angular/core';
+import { ModeloMarca } from 'src/app/modelos/marca.modelo';
+import { MarcaService } from 'src/app/servicios/marca/marca.service';
+
+
 
 @Component({
   selector: 'app-listar-marca',
@@ -9,17 +12,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarMarcaComponent implements OnInit {
 
-  listadoRegistros:ModeloMarca[]=[];
-
-  constructor(private servicio:MarcaService) { }
+  listadoMarca:ModeloMarca[]=[];
+  constructor(
+    public servicoMarca:MarcaService,
+  ) {
+    this.ObtenerListadoMarca();
+   }
 
   ngOnInit(): void {
-    this.ObtenerListado();
   }
 
-  ObtenerListado(){
-    this. servicio.ObtenerRegistros().subscribe((datos:ModeloMarca[])=>{
-      this.listadoRegistros=datos;
+  ObtenerListadoMarca(){
+    this.servicoMarca.ObtenerRegistros().subscribe((datos:ModeloMarca[])=>{
+      this.listadoMarca=datos;
     })
   }
 

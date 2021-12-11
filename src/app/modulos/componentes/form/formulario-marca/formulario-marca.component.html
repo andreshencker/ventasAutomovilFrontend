@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-8">
+              <h4>Listado de Vehiculo</h4>
+            </div>
+            <div class="col-1">
+              <button type="button" ><i class="fas fa-sort"></i> </button>
+            </div>
+            <div class="col-1">
+              <button type="button" (click)=" ObtenerListadoMarca()"><i class="fas fa-redo-alt"></i></button>
+            </div>
+            <div class="row">
+              <div class="form-group mt-2 col-6">
+                <label for="marcabus">Marca</label>
+                <input type="text" formControlName="marcaBus" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+        <cdk-virtual-scroll-viewport itemSize="10" class="viewport">
+          <div class="list-group"
+            *cdkVirtualFor="let p of listadoMarca | paginate: { itemsPerPage: 10, currentPage: paginaActual }">
+            <div class="card card-body list-group-item list-group-item-action">
+              <img src="{{p.imagen}}" alt="">
+              <div class="mt-4">
+                <h5 class="card-title">{{p.marca | uppercase }}</h5>
+              <button class="btn btn-outline-secondary" (click)="alEditar(p)"><i class="far fa-edit"></i></button>
+              <button class="btn btn-outline-danger"(click)="alEliminar(p.id)"><i class="far fa-trash-alt"></i></button>
+              <a class="btn btn-outline-dark" href="/administrador/marcaTipoVehiculo/{{p.id}}">Tipo vehiculos</a>
+              </div>
+            </div>
+          </div>
+        </cdk-virtual-scroll-viewport>
+        <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
+      </div>
+    </div>
+    <div class="col-8">
+      <h4>Datos de la marca</h4>
+      <form [formGroup]="fgValidador" method="post">
+        <div class="form-group mt-2 col-6" hidden>
+          <label for="id">Id</label>
+          <input type="text" [(ngModel)]="servicoMarca.seleccionarMarca.id" formControlName="id" name="id"
+            class="form-control">
+        </div>
+
+        <div class="row">
+          <div col-12>
+            <img src="{{servicoMarca.seleccionarMarca.imagen}}" alt="">
+          </div>
+          <div class="form-group mt-4 col-6">
+            <label for="nombre">imagen/ Url</label>
+            <input type="text" [(ngModel)]="servicoMarca.seleccionarMarca.imagen" formControlName="nombre"
+              name="nombre" class="form-control">
+            <div
+              *ngIf="getValue('nombre')?.errors?.['required'] && (getValue('nombre')?.touched ||getValue('nombre')?.dirty)">
+              El campo es requerido</div>
+          </div>
+          <div class="form-group mt-4 col-6">
+            <label for="marca">Marca</label>
+          <input type="text" [(ngModel)]="servicoMarca.seleccionarMarca.marca"
+            formControlName="marca" name="marca" class="form-control" >
+            <div *ngIf="getValue('marca')?.errors?.['required'] && (getValue('marca')?.touched ||getValue('marca')?.dirty)">El campo es requerido</div>
+          </div>
+        </div>
+        <div class="form-group mt-3 ">
+          <button [disabled]="!fgValidador.valid" type="submit" class=" btn btn-primary" (click)="onSubmit()"><i
+              class="fas fa-plus-circle"></i> Guardar</button>
+          <button type="reset" class="btn btn-secondary"><i class="fas fa-sync-alt" (click)="limpiarFormulario()"></i>
+            Limpiar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

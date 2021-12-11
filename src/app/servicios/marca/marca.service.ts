@@ -11,6 +11,7 @@ export class MarcaService {
 
   url="http://localhost:3000";
   token: string='';
+  seleccionarMarca:ModeloMarca=new ModeloMarca();
   constructor(private http:HttpClient,private seguridadServicio:SeguridadService) {
     this.token=seguridadServicio.ObtenerToken();
   }

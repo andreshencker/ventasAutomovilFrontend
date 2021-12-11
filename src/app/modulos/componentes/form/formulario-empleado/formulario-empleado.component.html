@@ -21,7 +21,7 @@
               </div>
               <div class="form-group mt-2 col-6">
                 <label for="cargo">Cargo</label>
-                <select formControlName="cargoBus" class="form-control" (change)="ObtenerListadoEmpleado()">
+                <select formControlName="cargoBus" class="form-control">
                   <option value="">SELECCIONE UNA OPCIÓN</option>
                   <option value="{{p.id}}" *ngFor="let p of listadoCargos">{{p.cargoEmpleado | uppercase}}</option>
                 </select>
@@ -38,6 +38,7 @@
               <div class="card-text">Celular: {{p.celular}}</div>
               <div class="card-text">Correo: {{p.correo}}</div>
               <div class="card-text">Cargo: {{p.cargoEmpleado.cargoEmpleado | uppercase}}</div>
+              <div class="card-text">Ciudad: {{p.ciudad.ciudad | uppercase}}</div>
               <button class="btn btn-outline-secondary" (click)="alEditar(p)" ><i class="far fa-edit"></i></button>
               <button class="btn btn-outline-danger" (click)="alEliminar(p)"><i class="far fa-trash-alt"></i></button>
             </div>
@@ -51,7 +52,11 @@
   <form  [formGroup]="fgValidador" method="post" >
     <div class="form-group mt-2 col-6" hidden>
       <label for="id">Id</label>
-      <input type="text"  [(ngModel)]="servicoEmpleado.seleccionarEmpleado.id"  formControlName="id" name="id" class="form-control">
+      <input type="text"  [(ngModel)]="servicoEmpleado.seleccionarEmpleado.id"  formControlName="id"  class="form-control">
+    </div>
+    <div class="form-group mt-2 col-6" hidden>
+      <label for="clave">clave</label>
+      <input type="text"  [(ngModel)]="servicoEmpleado.seleccionarEmpleado.contrasena"  formControlName="clave"  class="form-control">
     </div>
 
     <div class="row">
@@ -94,6 +99,16 @@
           <option  value="{{p.id}}" *ngFor="let p of listadoCargos">{{p.cargoEmpleado | uppercase}}</option>
         </select>
         <div *ngIf="getValue('cargo')?.invalid && (getValue('cargo')?.touched ||getValue('cargo')?.dirty) ">Seleccione un valor</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group mt-2 col-6">
+        <label for="ciudad">Ciudad</label>
+        <select  [(ngModel)]="servicoEmpleado.seleccionarEmpleado.ciudadId" formControlName="ciudad"  class="form-control">
+          <option  value="">SELECCIONE UNA OPCIÓN</option>
+          <option  value="{{p.id}}" *ngFor="let p of listadoCiudades">{{p.ciudad | uppercase}}</option>
+        </select>
+        <div *ngIf="getValue('ciudad')?.invalid && (getValue('ciudad')?.touched ||getValue('ciudad')?.dirty) ">Seleccione un valor</div>
       </div>
     </div>
     <div class="form-group mt-3 ">

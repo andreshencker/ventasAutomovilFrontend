@@ -1,16 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <app-logo></app-logo>
-      <h2>hola {{nombre}}</h2>
+      <div>hola {{nombre}}</div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Vehiculos</a>
           <ul class="dropdown-menu">
-            <li ><a class="dropdown-item" href="administrador/listar-tipoVehiculo">Tipo Vehiculo</a></li>
             <li><a class="dropdown-item" href="administrador/listar-marca">Marca Vehiculo</a></li>
             <li><a class="dropdown-item" href="administrador/catalogo-vehiculo">Catalogo Vehiculo</a></li>
             <li><a class="dropdown-item" href="administrador/crear-vehiculo">Vehiculo</a></li>
@@ -25,11 +24,12 @@
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Configuración Transacciones</a>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Configuraciones</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="administrador/listar-tipoTransaccion">Tipo Transacciones</a></li>
             <li><a class="dropdown-item" href="administrador/listar-estadoContrato">Estado Contratos</a></li>
             <li><a class="dropdown-item" href="administrador/listar-estadoSolicitud">Estado Solicitud</a></li>
+            <li ><a class="dropdown-item" href="administrador/listar-tipoVehiculo">Tipo Vehiculo</a></li>
           </ul>
         </li>
 

@@ -21,6 +21,8 @@ import { TarjetaCatalogoVehiculoComponent } from './card/tarjeta-catalogo-vehicu
 import { FormularioCatalogoVehiculoComponent } from './form/formulario-catalogo-vehiculo/formulario-catalogo-vehiculo.component';
 import { FormularioAdmClientesComponent } from './form/formulario-adm-clientes/formulario-adm-clientes.component';
 import { FormularioPerfilClienteComponent } from './form/formulario-perfil-cliente/formulario-perfil-cliente.component';
+import { FormularioMarcaComponent } from './form/formulario-marca/formulario-marca.component';
+import { FormularioMarcaTipoVehiculoComponent } from './form/formulario-marca-tipo-vehiculo/formulario-marca-tipo-vehiculo.component';
 
 
 @NgModule({
@@ -43,6 +45,10 @@ import { FormularioPerfilClienteComponent } from './form/formulario-perfil-clien
     FormularioCatalogoVehiculoComponent,
     FormularioAdmClientesComponent,
     FormularioPerfilClienteComponent,
+    FormularioMarcaComponent,
+    FormularioMarcaTipoVehiculoComponent
+
+
 
   ],
   imports: [
@@ -70,7 +76,11 @@ import { FormularioPerfilClienteComponent } from './form/formulario-perfil-clien
     TableFotoVehiculoComponent,
     FormularioCatalogoVehiculoComponent,
     FormularioAdmClientesComponent,
-    FormularioPerfilClienteComponent
+    FormularioPerfilClienteComponent,
+    FormularioMarcaComponent,
+    FormularioMarcaTipoVehiculoComponent
+
+
 
   ]
 })

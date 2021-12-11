@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-8">
+              <h4>Listado Tipo Vehiculos Marca</h4>
+            </div>
+            <div class="col-1">
+              <button type="button" ><i class="fas fa-sort"></i> </button>
+            </div>
+            <div class="col-1">
+              <button type="button" (click)=" obtenerRegistrosMarca()"><i class="fas fa-redo-alt"></i></button>
+            </div>
+          </div>
+        </div>
+        <cdk-virtual-scroll-viewport itemSize="10" class="viewport">
+          <div class="list-group"
+            *cdkVirtualFor="let p of listadoMarcaTipoVehiculo | paginate: { itemsPerPage: 10, currentPage: paginaActual }">
+            <div class="card card-body list-group-item list-group-item-action">
+              <div>
+                <h5 class="card-title">hola</h5>
+                <h5 class="card-title">{{p.id | uppercase }}</h5>
+                <h5 class="card-title">{{p.marcaId | uppercase }}</h5>
+              </div>
+              <button class="btn btn-outline-secondary" (click)="alEditar(p)"><i class="far fa-edit"></i></button>
+              <button class="btn btn-outline-danger" (click)="alEliminar(p)"><i class="far fa-trash-alt"></i></button>
+
+            </div>
+          </div>
+        </cdk-virtual-scroll-viewport>
+        <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
+      </div>
+    </div>
+    <div class="col-8">
+      <h4>Tipo Vehiculo Marca</h4>
+      <div class="mt-3">
+      <form [formGroup]="fgValidador" method="post">
+        <div class="form-group mt-2 col-6" hidden>
+          <label for="id">Id</label>
+          <input type="text" [(ngModel)]="servicio.seleccionarMarcaTipoVehiculo.id" formControlName="id" name="id"
+            class="form-control">
+          <div *ngIf="getValue('id')?.errors?.['required'] && (getValue('id')?.touched ||getValue('id')?.dirty)">El
+            campo es requerido</div>
+        </div>
+        <div class="form-group mt-2 col-6">
+          <label for="tipo">Tipo Vehiculo</label>
+        <select  [(ngModel)]="servicio.seleccionarMarcaTipoVehiculo.tipoVehiculoId" formControlName="tipo"  class="form-control">
+          <option  value="">SELECCIONE UNA OPCIÓN</option>
+          <option  value="{{p.id}}" *ngFor="let p of listadoTipoVehiculo">{{p.tipoVehiculo | uppercase}}</option>
+        </select>
+        <div *ngIf="getValue('tipo')?.invalid && (getValue('tipo')?.touched ||getValue('tipo')?.dirty) ">Seleccione un valor</div>
+
+        </div>
+        <div class="form-group mt-3 ">
+          <button [disabled]="!fgValidador.valid" type="submit" class=" btn btn-primary" (click)="onSubmit()"><i
+              class="fas fa-plus-circle"></i> Guardar</button>
+          <button type="reset" class="btn btn-secondary"><i class="fas fa-sync-alt" (click)="limpiarFormulario()"></i>
+            Limpiar</button>
+          <a class="btn btn-dark" href="administrador/listar-marca">Marcas</a>
+        </div>
+      </form>
+
+      </div>
+    </div>
+  </div>
+</div>

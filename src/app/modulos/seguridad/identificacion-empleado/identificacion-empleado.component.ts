@@ -1,3 +1,5 @@
+import { ModeloidentificarEmpleado } from './../../../modelos/identificarEmpleado.modelo';
+import { ModeloDatosEmpleado } from './../../../modelos/datosEmpleado.modelo';
 import { CargoEmpleadoService } from 'src/app/servicios/cargoEmpleado/cargo-empleado.service';
 import { CatalogoVehiculoService } from './../../../servicios/catalogoVehiculo/catalogo-vehiculo.service';
 import { EmpleadoService } from 'src/app/servicios/empleado/empleado.service';
@@ -85,10 +87,18 @@ export class IdentificacionEmpleadoComponent implements OnInit {
     let claveCifrada =cryptoJS.MD5(clave).toString();
     this.servicioSeguridad.IdentificarEmpleado(usuario,claveCifrada).subscribe((datos:any)=>{
       this.servicioSeguridad.AlmacenarSesionEmpelado(datos);
-     // this.router.navigate(["/administrador/listar-ciudad"]);
       this.router.navigate(["/administrador/crear-cargoEmpleado"])
 
-      this.limpiarFormulario();
+      /*
+      if(String(datos.cargo)=='618e829ddb2db90aec437d22'){
+        this.router.navigate(["/asesor/estadisticas-solicitudes"]);
+      }else if(String(datos.cargo)=='619f1108964c5528b0df651c'){
+         this.router.navigate(["/administrador/crear-cargoEmpleado"])
+      }
+      */
+
+
+      //this.limpiarFormulario();
 
     },(error:any)=>{
       this.DatosInvalidos();
