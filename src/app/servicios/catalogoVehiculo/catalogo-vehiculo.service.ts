@@ -21,7 +21,10 @@ export class CatalogoVehiculoService {
   }
 
   ObtenerCatalogoVehiculo(id:string):Observable<ModeloCatalogoVehiculo>{
-    return this.http.get<ModeloCatalogoVehiculo>(`${this.url}/catalogo-vehiculos/${id}`);
+    return this.http.get<ModeloCatalogoVehiculo>(`${this.url}/catalogo-vehiculos/${id}?filter={"include":[{"relation":"marcaTipoVehiculo"}]}`);
+  }
+  ObtenerCatalogoVehiculoByMarcaTipoVehiculo(id:string):Observable<ModeloCatalogoVehiculo[]>{
+    return this.http.get<ModeloCatalogoVehiculo[]>(`${this.url}/marca-tipo-vehiculos/${id}/catalogo-vehiculos`);
   }
 
   CrearCatalogoVehiculo(p:ModeloCatalogoVehiculo):Observable<ModeloCatalogoVehiculo>{

@@ -4,8 +4,8 @@
       <div class="card">
         <div class="card-header">
           <div class="row">
-            <div class="col-8">
-              <h4>Listado de Vehiculos</h4>
+            <div class="col-9">
+              <h4>Inventario {{vehiculo |uppercase}}</h4>
             </div>
             <div class="col-1">
               <button type="button"><i class="fas fa-sort"></i> </button>
@@ -16,7 +16,7 @@
             <div class="row">
               <div class="form-group mt-2 col-6">
                 <label for="documento">Vehiculo</label>
-                <input type="text" formControlName="documentoBus" class="form-control" maxlength="10">
+                <input type="text"  class="form-control" maxlength="10">
               </div>
             </div>
           </div>
@@ -28,9 +28,9 @@
               <div>
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" >
                   <div class="carousel-indicators" >
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                   </div>
                   <div class="carousel-inner" >
                     <div class="carousel-item active" >
@@ -47,12 +47,15 @@
                   </button>
                 </div>
               </div>
-              <h5 class="card-title">{{p.marca.marca | uppercase }} {{p.catalogoVehiculoId | uppercase }} </h5>
+              <h5 class="card-text">Precio: {{p.precio|currency}}</h5>
               <div class="card-text">Modelo: {{p.modelo}}</div>
               <div class="card-text">Color: {{p.color}}</div>
               <div class="card-text">Kilometraje: {{p.kilometraje}}</div>
-              <div class="card-text">Tipo Vehiculo: {{p.tipoVehiculo.tipoVehiculo}}</div>
-              <div class="card-text">Tipo Transacción: {{p.tipoTransaccion.tipoTransaccion}}</div>
+              <div class="card-text">Ciudad: {{p.ciudad.ciudad |uppercase}}</div>
+              <div class="card-text">Tipo Transacción: {{p.tipoTransaccion.tipoTransaccion|uppercase}}</div>
+
+
+
               <button class="btn btn-outline-secondary" (click)="alEditar(p)"><i class="far fa-edit"></i></button>
               <button class="btn btn-outline-danger" (click)="alEliminar(p.id)"><i class="far fa-trash-alt"></i></button>
               <a class="btn btn-outline-success" href="/administrador/foto-vehiculo/{{p.id}}"><i class="fas fa-images"></i></a>
@@ -63,23 +66,36 @@
       </div>
     </div>
     <div class="col-8">
-      <h4>Datos del Vehiculo</h4>
+      <h4>Datos Inventario {{vehiculo |uppercase}}</h4>
   <form  [formGroup]="fgValidador" method="post" >
-    <div class="card card-body">
-      <div class="form-group mt-2 col-6" >
+
+      <div class="form-group mt-2 col-md-6" hidden >
         <label for="id">Id</label>
         <input type="text"  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.id"  formControlName="id" name="id" class="form-control">
       </div>
       <div class="row">
-        <div class="form-group mt-2 col-6">
-          <label for="catalogo">Nombre</label>
-          <select  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.catalogoVehiculoId" formControlName="catalogo" name="catalogo"   class="form-control" data-live-search="true">
+
+        <div class="form-group mt-2 col-md-12">
+          <label for="tipoTransaccion">Tipo Transaccion</label>
+          <select  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.tipoTransaccionId" formControlName="tipoTransaccion" name="tipoTransaccion" class="form-control">
             <option  value="">SELECCIONE UNA OPCIÓN</option>
-            <option  value="{{p.id}}" *ngFor="let p of listadoCatalogo">{{p.nombreVehiculo | uppercase}}</option>
+            <option  value="{{p.id}}" *ngFor="let p of listadoTipoTransacciones">{{p.tipoTransaccion | uppercase}}</option>
           </select>
-          <div *ngIf="getValue('catalogo')?.invalid && (getValue('catalogo')?.touched ||getValue('catalogo')?.dirty) ">Seleccione un valor</div>
+          <div *ngIf="getValue('tipoTransaccion')?.invalid && (getValue('tipoTransaccion')?.touched ||getValue('tipoTransaccion')?.dirty) ">Seleccione un valor</div>
         </div>
-        <div class="form-group mt-2 col-6">
+      </div>
+
+      <div class="row">
+        <div class="form-group mt-2 col-md-6">
+          <label for="ciudad">Ciudad</label>
+          <select  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.ciudadId" formControlName="ciudad" name="ciudad" class="form-control">
+            <option  value="">SELECCIONE UNA OPCIÓN</option>
+            <option  value="{{p.id}}" *ngFor="let p of listadoCiudad">{{p.ciudad| uppercase}}</option>
+          </select>
+          <div *ngIf="getValue('ciudad')?.invalid && (getValue('ciudad')?.touched ||getValue('ciudad')?.dirty) ">Seleccione un valor</div>
+        </div>
+
+        <div class="form-group mt-2 col-md-6">
           <label for="modelo">Modelo</label>
           <select [(ngModel)]="servicoVehiculo.seleccionarVehiculo.modelo" formControlName="modelo" name="modelo" class="form-control">
             <option value="2010">2010</option>
@@ -98,11 +114,10 @@
           </select>
           <div *ngIf="getValue('modelo')?.errors?.['required'] && (getValue('modelo')?.touched ||getValue('modelo')?.dirty)">El campo es requerido</div>
         </div>
+
       </div>
-
-
       <div class="row">
-        <div class="form-group mt-2 col-6">
+        <div class="form-group mt-2 col-md-6">
           <label for="color">Color</label>
           <select [(ngModel)]="servicoVehiculo.seleccionarVehiculo.color" formControlName="color" name="color" class="form-control">
             <option value="">SELECIONE UNA OPCIÓN</option>
@@ -115,53 +130,46 @@
           </select>
           <div *ngIf="getValue('color')?.errors?.['required'] && (getValue('color')?.touched ||getValue('color')?.dirty)">El campo es requerido</div>
         </div>
-        <div class="form-group mt-2 col-6" >
+
+        <div class="form-group mt-2 col-md-6" >
           <label for="kilometraje">Kilometraje</label>
-          <input type="text"  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.kilometraje"  formControlName="kilometraje" name="kilometraje" class="form-control">
+          <input type="number"  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.kilometraje"  formControlName="kilometraje" name="kilometraje" class="form-control">
           <div *ngIf="getValue('kilometraje')?.errors?.['required'] && (getValue('kilometraje')?.touched ||getValue('kilometraje')?.dirty)">El campo es requerido</div>
         </div>
       </div>
 
       <div class="row">
-        <div class="form-group mt-2 col-6">
-          <label for="marca">Marca</label>
-          <select  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.marcaId" formControlName="marca" name="marca" class="form-control">
-            <option  value="">SELECCIONE UNA OPCIÓN</option>
-            <option  value="{{p.id}}" *ngFor="let p of listadoMarca">{{p.marca | uppercase}}</option>
-          </select>
-          <div *ngIf="getValue('marca')?.invalid && (getValue('marca')?.touched ||getValue('marca')?.dirty) ">Seleccione un valor</div>
+        <div class="form-group mt-2 col-md-4" >
+          <label for="cantidad">Cantidad</label>
+          <input type="number"  [(ngModel)]="servicoVehiculo.seleccionarVehiculo"  formControlName="cantidad"  class="form-control">
+          <div *ngIf="getValue('cantidad')?.errors?.['required'] && (getValue('cantidad')?.touched ||getValue('cantidad')?.dirty)">El campo es requerido</div>
         </div>
-        <div class="form-group mt-2 col-6">
-          <label for="tipoVehiculo">Tipo Vehiculo</label>
-          <select  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.tipoVehiculoId" formControlName="tipoVehiculo" name="tipoVehiculo" class="form-control">
-            <option  value="">SELECCIONE UNA OPCIÓN</option>
-            <option  value="{{p.id}}" *ngFor="let p of listadoTipoVehiculos">{{p.tipoVehiculo | uppercase}}</option>
-          </select>
-          <div *ngIf="getValue('tipoVehiculo')?.invalid && (getValue('tipoVehiculo')?.touched ||getValue('tipoVehiculo')?.dirty) ">Seleccione un valor</div>
+
+        <div class="form-group mt-2 col-md-4" >
+          <label for="precio">Precio</label>
+          <input type="number"  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.precio"  formControlName="precio" name="precio" class="form-control">
+          <div *ngIf="getValue('precio')?.errors?.['required'] && (getValue('precio')?.touched ||getValue('precio')?.dirty)">El campo es requerido</div>
+        </div>
+
+        <div class="form-group mt-2 col-md-4" >
+          <label for="comision">Comision</label>
+          <input type="number"  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.porComision"  formControlName="comision" class="form-control">
+          <div *ngIf="getValue('comision')?.errors?.['required'] && (getValue('comision')?.touched ||getValue('comision')?.dirty)">El campo es requerido</div>
         </div>
       </div>
-
       <div class="row">
-
-        <div class="form-group mt-2 col-6">
-          <label for="tipoTransaccion">Tipo Transaccion</label>
-          <select  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.tipoTransaccionId" formControlName="tipoTransaccion" name="tipoTransaccion" class="form-control">
-            <option  value="">SELECCIONE UNA OPCIÓN</option>
-            <option  value="{{p.id}}" *ngFor="let p of listadoTipoTransacciones">{{p.tipoTransaccion | uppercase}}</option>
-          </select>
-          <div *ngIf="getValue('tipoTransaccion')?.invalid && (getValue('tipoTransaccion')?.touched ||getValue('tipoTransaccion')?.dirty) ">Seleccione un valor</div>
-        </div>
-        <div class="form-group mt-2 col-6">
+        <div class="form-group mt-2 col-md-12">
           <label for="descripcion">Descripcion</label>
           <textarea  [(ngModel)]="servicoVehiculo.seleccionarVehiculo.descripcion" formControlName="descripcion" name="descripcion" class="form-control" cols="30" rows="1"></textarea>
           <div *ngIf="getValue('descripcion')?.errors?.['required'] && (getValue('descripcion')?.touched ||getValue('descripcion')?.dirty)">El campo es requerido</div>
         </div>
       </div>
+
       <div class="form-group mt-3 ">
         <button [disabled]="!fgValidador.valid" type="submit" class=" btn btn-primary"(click)="onSubmit()" ><i class="fas fa-plus-circle"></i> Guardar</button>
         <button type="reset" class="btn btn-secondary"><i class="fas fa-sync-alt" (click)="limpiarFormulario()"></i> Limpiar</button>
       </div>
-    </div>
+
   </form>
     </div>
   </div>

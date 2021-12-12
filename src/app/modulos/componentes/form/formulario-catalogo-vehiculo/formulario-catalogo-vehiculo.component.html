@@ -5,10 +5,11 @@
         <div class="card-header">
           <div class="row">
             <div class="col-8">
-              <h4>Listado de Vehiculo</h4>
+              <img src="{{imagen}}" alt="">
+              <h4>{{tipoVehiculo |uppercase}} {{marca |uppercase}}</h4>
             </div>
             <div class="col-1">
-              <button type="button" (click)="ordenar()"><i class="fas fa-sort"></i> </button>
+              <button type="button" ><i class="fas fa-sort"></i> </button>
             </div>
             <div class="col-1">
               <button type="button" (click)=" ObtenerListadoCatalogo()"><i class="fas fa-redo-alt"></i></button>
@@ -16,7 +17,7 @@
             <div class="row">
               <div class="form-group mt-2 col-6">
                 <label for="documento">Nombre Vehiculo</label>
-                <input type="text" formControlName="documentoBus" class="form-control">
+                <input type="text" class="form-control">
               </div>
             </div>
           </div>
@@ -25,9 +26,10 @@
           <div class="list-group"
             *cdkVirtualFor="let p of listadoCatalogo | paginate: { itemsPerPage: 10, currentPage: paginaActual }">
             <div class="card card-body list-group-item list-group-item-action">
-              <h5 class="card-title">{{p.nombreVehiculo | uppercase }}</h5>
+              <h5 class="card-title">{{p.nombre | uppercase }}</h5>
               <button class="btn btn-outline-secondary" (click)="alEditar(p)"><i class="far fa-edit"></i></button>
               <button class="btn btn-outline-danger"(click)="alEliminar(p.id)"><i class="far fa-trash-alt"></i></button>
+              <a class="btn btn-outline-dark" href="/administrador/crear-vehiculo/{{p.id}}">Inventario vehiculo</a>
             </div>
           </div>
         </cdk-virtual-scroll-viewport>
@@ -35,7 +37,7 @@
       </div>
     </div>
     <div class="col-8">
-      <h4>Datos del catalogo Vehiculos</h4>
+      <h4>Datos del catalogo {{tipoVehiculo |uppercase}} {{marca |uppercase}} </h4>
       <form [formGroup]="fgValidador" method="post">
         <div class="form-group mt-2 col-6" hidden>
           <label for="id">Id</label>
@@ -43,14 +45,14 @@
             class="form-control">
         </div>
         <label for="catalogo">Nombre</label>
-        <input type="text" [(ngModel)]="servicoCatlogoVehiculo.seleccionarCatalogo.nombreVehiculo"
+        <input type="text" [(ngModel)]="servicoCatlogoVehiculo.seleccionarCatalogo.nombre"
           formControlName="catalogo" name="catalogo" class="form-control" >
           <div *ngIf="getValue('catalogo')?.errors?.['required'] && (getValue('catalogo')?.touched ||getValue('catalogo')?.dirty)">El campo es requerido</div>
         <div class="form-group mt-3 ">
           <button [disabled]="!fgValidador.valid" type="submit" class=" btn btn-primary" (click)="onSubmit()"><i
               class="fas fa-plus-circle"></i> Guardar</button>
-          <button type="reset" class="btn btn-secondary"><i class="fas fa-sync-alt" (click)="limpiarFormulario()"></i>
-            Limpiar</button>
+          <button type="reset" class="btn btn-secondary"><i class="fas fa-sync-alt" (click)="limpiarFormulario()"></i>          Limpiar</button>
+
         </div>
       </form>
     </div>

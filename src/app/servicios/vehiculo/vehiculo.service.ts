@@ -17,11 +17,16 @@ export class VehiculoService {
   }
 
   ObtenerRegistros():Observable<ModeloVehiculo[]>{
-    return this.http.get<ModeloVehiculo[]>(`${this.url}/vehiculos?filter={"include":[{"relation":"fotoVehiculos"},{"relation":"marca"},{"relation":"tipoTransaccion"},{"relation":"tipoVehiculo"},{"relation":"catalogoVehiculo"}]}`);
+    return this.http.get<ModeloVehiculo[]>(`${this.url}/vehiculos?filter={"include":[{"relation":"fotoVehiculos"},{"relation":"tipoTransaccion"},{"relation":"catalogoVehiculo"}]}`);
   }
 
   ObtenerVehiculo(id:string):Observable<ModeloVehiculo>{
-    return this.http.get<ModeloVehiculo>(`${this.url}/vehiculos/${id}`);
+    return this.http.get<ModeloVehiculo>(`${this.url}/vehiculos/${id}?filter={"include":[{"relation":"catalogoVehiculo"}]}`);
+  }
+
+
+  ObtenerVehiculoByMarcaTipoVehiculo(id:string):Observable<ModeloVehiculo[]>{
+    return this.http.get<ModeloVehiculo[]>(`${this.url}/catalogo-vehiculos/${id}/vehiculos?filter={"include":[{"relation":"fotoVehiculos"},{"relation":"ciudad"},{"relation":"tipoTransaccion"}]}`);
   }
 
   CrearVehiculo(p:ModeloVehiculo):Observable<ModeloVehiculo>{

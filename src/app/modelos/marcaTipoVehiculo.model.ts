@@ -4,6 +4,6 @@ export class ModeloMarcaTipoVehiculo{
   id?:string;
   marcaId?:string;
   tipoVehiculoId?:string;
-  tipoVehicilo?:ModeloTipoVehiculo;
+  tipoVehiculo?:ModeloTipoVehiculo;
   marca?:ModeloMarca;
 }

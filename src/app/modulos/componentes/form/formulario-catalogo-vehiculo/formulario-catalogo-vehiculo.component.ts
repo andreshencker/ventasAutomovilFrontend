@@ -1,9 +1,12 @@
+import { ModeloMarcaTipoVehiculo } from 'src/app/modelos/marcaTipoVehiculo.model';
+import { MarcaTipoVehiculoService } from 'src/app/servicios/marcaTipoVehiculo/marca-tipo-vehiculo.service';
 import { ActualizarVehiculoComponent } from './../../../administrador/Vehiculo/actualizar-vehiculo/actualizar-vehiculo.component';
 import { ModeloCatalogoVehiculo } from './../../../../modelos/catalogoVehiculos.model';
 import { CatalogoVehiculoService } from './../../../../servicios/catalogoVehiculo/catalogo-vehiculo.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulario-catalogo-vehiculo',
@@ -23,20 +26,44 @@ export class FormularioCatalogoVehiculoComponent implements OnInit {
 
   paginaActual=1
   listadoCatalogo:ModeloCatalogoVehiculo[]=[];
+  id:string='';
+  marca?:string='';
+  imagen?:string='';
+  tipoVehiculo?:string='';
 
   constructor(
     private fb:FormBuilder,
     public servicoCatlogoVehiculo:CatalogoVehiculoService,
+    private servicioMarcaTipo:MarcaTipoVehiculoService,
+    private router:Router,
+    private route:ActivatedRoute,
 
   ) { }
 
   ngOnInit(): void {
+    this.id=this.route.snapshot.params["id"];
+    console.log(this.id)
     this.ObtenerListadoCatalogo();
+    this.ObtenerRegsitros();
+
 
   }
 
+  ObtenerRegsitros(){
+    this.servicioMarcaTipo.ObtenerMarcaTipoVehiculo(this.id).subscribe((datos:ModeloMarcaTipoVehiculo)=>{
+      this.marca=datos.marca?.marca;
+      this.tipoVehiculo=datos.tipoVehiculo?.tipoVehiculo;
+      this.imagen=datos.marca?.imagen;
+
+      console.log(this.marca)
+      console.log(this.imagen)
+      console.log(this.tipoVehiculo)
+
+    })
+  }
+
   ObtenerListadoCatalogo(){
-    this.servicoCatlogoVehiculo.ObtenerRegistros().subscribe((datos:ModeloCatalogoVehiculo[])=>{
+    this.servicoCatlogoVehiculo.ObtenerCatalogoVehiculoByMarcaTipoVehiculo(this.id).subscribe((datos:ModeloCatalogoVehiculo[])=>{
       this.listadoCatalogo=datos;
     })
   }
@@ -84,7 +111,8 @@ export class FormularioCatalogoVehiculoComponent implements OnInit {
 
   onSubmit(){
     let e=new ModeloCatalogoVehiculo()
-    e.nombreVehiculo=this.fgValidador.controls["catalogo"].value
+    e.nombre=this.fgValidador.controls["catalogo"].value
+    e.marcaTipoVehiculoId=this.id
 
     if(this.fgValidador.controls["id"].value==null){
           this.servicoCatlogoVehiculo.CrearCatalogoVehiculo(e).subscribe((datos:ModeloCatalogoVehiculo)=>{

@@ -1,3 +1,5 @@
+import { ModeloMarcaTipoVehiculo } from 'src/app/modelos/marcaTipoVehiculo.model';
+import { CiudadService } from 'src/app/servicios/ciudad/ciudad.service';
 import { ModeloFotoVehiculo } from './../../../../modelos/fotoVehiculo.modelo';
 import { FotoVehiculoService } from './../../../../servicios/fotoVehiculo/foto-vehiculo.service';
 import { CatalogoVehiculoService } from './../../../../servicios/catalogoVehiculo/catalogo-vehiculo.service';
@@ -13,6 +15,8 @@ import { TipoTransaccionService } from 'src/app/servicios/tipoTransaccion/tipo-t
 import { TipoVehiculoService } from 'src/app/servicios/tipoVehiculo/tipo-vehiculo.service';
 import { MarcaService } from './../../../../servicios/marca/marca.service';
 import Swal from 'sweetalert2';
+import { ModeloCiudad } from 'src/app/modelos/ciudad.modelo';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -24,14 +28,16 @@ export class FormularioVehiculoComponent implements OnInit {
 
   fgValidador:FormGroup=this.fb.group({
     'id':[''],
-    'catalogo':['',[Validators.required]],
+    'cantidad':['',[Validators.required,Validators.min(1)]],
+    'comision':['',[Validators.required,]],
+    'precio':['',[Validators.required,Validators.min(1)]],
+    'ciudad':['',[Validators.required]],
     'color':['',[Validators.required]],
     'kilometraje':['',[Validators.required]],
     'modelo':['',[Validators.required]],
     'descripcion':['',[Validators.required]],
-    'tipoVehiculo':['',[Validators.required,]],
     'tipoTransaccion':['',[Validators.required]],
-    'marca':['',[Validators.required]],
+
   })
 
   getValue(value:string){
@@ -42,34 +48,42 @@ export class FormularioVehiculoComponent implements OnInit {
   paginaActual=1
   listadoFotos:ModeloFotoVehiculo[]=[];
   listadoCatalogo:ModeloCatalogoVehiculo[]=[];
-  listadoTipoVehiculos:ModeloTipoVehiculo[]=[];
+  listadoCiudad:ModeloCiudad[]=[];
   listadoVehiculos:ModeloVehiculo[]=[];
   listadoTipoTransacciones:ModeloTipoTransaccion[]=[];
   listadoMarca:ModeloMarca[]=[];
+  vehiculo?:string='';
+  marca:string='';
+  tipo:string='';
+  imagen:string='';
 
   constructor(
     private fb:FormBuilder,
     public servicoVehiculo:VehiculoService,
     private servicioTipoTransaccion: TipoTransaccionService,
-    private servicioTipoVehiculo:TipoVehiculoService,
-    private servicioMarca:MarcaService,
+    private servicioCiudad:CiudadService,
     private servicioCatalogo:CatalogoVehiculoService,
-    private servicioFotoVehiculo:FotoVehiculoService
+    private servicioFotoVehiculo:FotoVehiculoService,
+    private router:Router,
+    private route:ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
-    this.ObtenerListadoTipoVehiculo();
+    this.id=this.route.snapshot.params["id"];
+    this.ObtenerListadoCiudad();
     this.ObtenerListadoTipoTransaccion();
-    this.ObtenerListadoMarca();
     this.ObtenerListadoCatalogo();
+
     this.ObtenerListadoVehiculo();
+    this. obtenerRegistros();
     }
 
     ObtenerListadoVehiculo(){
-      this.servicoVehiculo.ObtenerRegistros().subscribe((datos:ModeloVehiculo[])=>{
+      this.servicoVehiculo.ObtenerVehiculoByMarcaTipoVehiculo(this.id).subscribe((datos:ModeloVehiculo[])=>{
         this.listadoVehiculos=datos;
       })
     }
+
   ObtenerListadoTipoTransaccion(){
     this.servicioTipoTransaccion.ObtenerRegistros().subscribe((datos:ModeloTipoTransaccion[])=>{
       this.listadoTipoTransacciones=datos;
@@ -82,21 +96,25 @@ export class FormularioVehiculoComponent implements OnInit {
     })
   }
 
-  ObtenerListadoTipoVehiculo(){
-    this.servicioTipoVehiculo.ObtenerRegistros().subscribe((datos:ModeloTipoVehiculo[])=>{
-      this.listadoTipoVehiculos=datos;
+  ObtenerListadoCiudad(){
+    this.servicioCiudad.ObtenerRegistros().subscribe((datos:ModeloCiudad[])=>{
+      this.listadoCiudad=datos;
     })
   }
-  ObtenerListadoMarca(){
-    this.servicioMarca.ObtenerRegistros().subscribe((datos:ModeloMarca[])=>{
-      this.listadoMarca=datos;
-    })
-  }
+
 
   obtenerRegistrosFoto(vehiculo:ModeloVehiculo){
       this.id=String(vehiculo.id);
       this.servicioFotoVehiculo.ObtenerFortoVehiculoByVehiculo(this.id).subscribe((datos:ModeloFotoVehiculo[])=>{
       this.listadoFotos= datos;
+    })
+  }
+
+ 
+
+  obtenerRegistros(){
+    this.servicioCatalogo.ObtenerCatalogoVehiculo(this.id).subscribe((datos:ModeloCatalogoVehiculo)=>{
+      this.vehiculo=datos.nombre;
     })
   }
 
@@ -144,15 +162,16 @@ export class FormularioVehiculoComponent implements OnInit {
 
   onSubmit(){
     let e=new ModeloVehiculo()
-    e.catalogoVehiculoId=this.fgValidador.controls["catalogo"].value
+    e.color=this.fgValidador.controls["color"].value
+    e.kilometraje=String(this.fgValidador.controls["kilometraje"].value)
     e.modelo=this.fgValidador.controls["modelo"].value
     e.descripcion=this.fgValidador.controls["descripcion"].value
-    e.tipoVehiculoId=this.fgValidador.controls["tipoVehiculo"].value
+   // e.fecha=String(this.fgValidador.controls["fecha"].value)
+    e.precio=this.fgValidador.controls["precio"].value
+    e.porComision=this.fgValidador.controls["comision"].value
     e.tipoTransaccionId=this.fgValidador.controls["tipoTransaccion"].value
-    e.marcaId=this.fgValidador.controls["marca"].value
-    e.catalogoVehiculoId=this.fgValidador.controls["catalogo"].value
-    e.color=this.fgValidador.controls["color"].value
-    e.kilometraje=this.fgValidador.controls["kilometraje"].value
+    e.catalogoVehiculoId=this.id;
+    e.ciudadId=this.fgValidador.controls["ciudad"].value
     if(this.fgValidador.controls["id"].value==null){
       this.servicoVehiculo.CrearVehiculo(e).subscribe((datos:ModeloVehiculo)=>{
       this.RegistroGuardado();

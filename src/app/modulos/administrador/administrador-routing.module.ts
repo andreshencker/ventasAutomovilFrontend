@@ -83,11 +83,11 @@ const routes: Routes = [
     component:EliminarDetalleVehiculoComponent
   },
   {
-    path:'crear-vehiculo',
+    path:'crear-vehiculo/:id',
     component:CrearVehiculoComponent
   },
   {
-    path:'catalogo-vehiculo',
+    path:'catalogo-vehiculo/:id',
     component:ActualizarVehiculoComponent
   },
   {

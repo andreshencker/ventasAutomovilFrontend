@@ -1,5 +1,5 @@
+import { MarcaService } from 'src/app/servicios/marca/marca.service';
 import { ModeloTipoVehiculo } from './../../../../modelos/tipoVehiculo.modelo';
-import { MarcaService } from './../../../../servicios/marca/marca.service';
 import { TipoVehiculoService } from './../../../../servicios/tipoVehiculo/tipo-vehiculo.service';
 import { ModeloMarcaTipoVehiculo } from './../../../../modelos/marcaTipoVehiculo.model';
 import { Component, OnInit } from '@angular/core';
@@ -30,27 +30,40 @@ export class FormularioMarcaTipoVehiculoComponent implements OnInit {
   paginaActual=1
   listadoMarcaTipoVehiculo:ModeloMarcaTipoVehiculo[]=[];
   listadoTipoVehiculo:ModeloTipoVehiculo[]=[];
+  marca?:string='';
+  imagen?:string='';
 
   constructor(
     private fb:FormBuilder,
-    public servicioTipoVehiculo:TipoVehiculoService,
+    private servicioTipoVehiculo:TipoVehiculoService,
     public servicio:MarcaTipoVehiculoService,
+    private servicioMarca:MarcaService,
     private router:Router,
     private route:ActivatedRoute,
 
-  ) { }
+  ) {
+
+
+  }
 
   ngOnInit(): void {
     this.id=this.route.snapshot.params["id"];
     this.obtenerRegistrosMarca();
     this.obtenerRegistrosTipoVehiculo();
+    this.obtenerRegistro();
   }
 
-
+  obtenerRegistro(){
+    this.servicioMarca.ObtenerMarca(this.id).subscribe((datos:ModeloMarca)=>{
+      this.marca=datos.marca;
+      this.imagen=datos.imagen
+    })
+  }
 
   obtenerRegistrosMarca(){
     this.servicio.ObtenerMarcaTipoVehiculoByMarca(this.id).subscribe((datos:ModeloMarcaTipoVehiculo[])=>{
       this.listadoMarcaTipoVehiculo=datos;
+      console.log(this.listadoMarcaTipoVehiculo);
     })
   }
 

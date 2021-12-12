@@ -22,10 +22,10 @@ export class MarcaTipoVehiculoService {
 
 
   ObtenerMarcaTipoVehiculo(id:string):Observable<ModeloMarcaTipoVehiculo>{
-    return this.http.get<ModeloMarcaTipoVehiculo>(`${this.url}/marca-tipo-vehiculos/${id}`);
+    return this.http.get<ModeloMarcaTipoVehiculo>(`${this.url}/marca-tipo-vehiculos/${id}?filter={"include":[{"relation":"tipoVehiculo"}],"order":["tipoVehiculo ASC"]}`);
   }
   ObtenerMarcaTipoVehiculoByMarca(id:string):Observable<ModeloMarcaTipoVehiculo[]>{
-    return this.http.get<ModeloMarcaTipoVehiculo[]>(`${this.url}/marcas/${id}marca-tipo-vehiculos?filter={"include":[{"relation":"tipoVehiculo"}],"order":["tipoVehiculo ASC"]}`);
+    return this.http.get<ModeloMarcaTipoVehiculo[]>(`${this.url}/marcas/${id}/marca-tipo-vehiculos?filter={"include":[{"relation":"tipoVehiculo"}],"order":["tipoVehiculo ASC"]}`);
   }
 
 
